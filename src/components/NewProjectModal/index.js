@@ -28,7 +28,7 @@ import TemplateChooser from './TemplateChooser'
 
 import './style.scss'
 
-const HOME_DIR = os.homedir()
+const HOME_DIR = `${os.homedir()}/Documents/mjml-wip`;
 
 const defaultState = {
   projectName: '',
