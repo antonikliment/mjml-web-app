@@ -4,18 +4,24 @@ import path from 'path'
 import { promisify } from 'es6-promisify'
 import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
+import { saveOnServer } from 'api-client';
 
 const { dialog } = remote
 
 export const fsReadDir = promisify(fs.readdir)
 export const fsRename = promisify(fs.rename)
 export const fsReadFile = promisify(fs.readFile)
-export const fsWriteFile = promisify(fs.writeFile)
+const fsWriteFileToDisk = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
 export const fsMkdir = promisify(fs.mkdir)
 export const fsUnlink = promisify(fs.unlink)
 export const recursiveCopy = promisify(ncp)
+
+export async function fsWriteFile(...args) {
+  await saveOnServer(...args)
+  await fsWriteFileToDisk(...args)
+}
 
 function getFileInfoFactory(p) {
   return async name => {
