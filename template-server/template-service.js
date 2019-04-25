@@ -37,7 +37,7 @@ function listTemplates(path) {
 }
 
 function removeTemplate(projectName, templateName) {
-  return unlinkSync(`${__dirname}/${projectName}/${templateName}`);
+  return unlinkSync(`${__dirname}/templates/${projectName}/${templateName}`);
 }
 
 function removeProject(projectName) {
