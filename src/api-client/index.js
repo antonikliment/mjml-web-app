@@ -28,3 +28,20 @@ export async function saveOnServer(path, fileData) {
    });
   return res;
 }
+
+export async function deleteTemplateFromServer(path) {
+  const { projectName, fileName } = pathConverter(path);
+  const res = await fetch(`http://localhost:5000/${projectName}/${fileName}`, {
+     method: "DELETE"
+  });
+  return res;
+}
+
+export async function deleteProjectFromServer(path) {
+  const pathBlock = path.split("/")
+  const projectName = pathBlock.pop()
+  const res = await fetch(`http://localhost:5000/${projectName}`, {
+     method: "DELETE"
+  });
+  return res;
+}

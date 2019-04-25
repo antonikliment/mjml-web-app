@@ -2,6 +2,8 @@ import fs from 'fs'
 import os from 'os'
 import path from 'path'
 import trash from 'trash'
+
+import { deleteProjectFromServer } from 'api-client';
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
@@ -54,10 +56,11 @@ export function addProject(p) {
 }
 
 export function removeProject(p, shouldDeleteFolder = false) {
-  return dispatch => {
+  return async (dispatch) => {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
     if (shouldDeleteFolder) {
+      await deleteProjectFromServer(p)
       trash(p)
     }
   }
@@ -105,6 +108,7 @@ export function loadProjects() {
     const { settings } = state
 
     const projectsPaths = settings.get('projects')
+    console.log(projectsPaths);
 
     // eventually get the custom mjml path set in settings
     const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'

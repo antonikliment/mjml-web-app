@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import pathModule from 'path'
 import trash from 'trash'
+
+import { deleteTemplateFromServer } from 'api-client';
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -97,6 +99,7 @@ class ProjectPage extends Component {
       if ((await trash(fileName)) === undefined) {
         throw new Error('No file was deleted')
       }
+      await deleteTemplateFromServer(fileName);
       this.props.addAlert('File successfully removed', 'success')
     } catch (e) {
       this.props.addAlert('Could not delete file', 'error')
