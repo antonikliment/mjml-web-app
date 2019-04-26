@@ -96,9 +96,9 @@ class ProjectPage extends Component {
 
   handleRemoveFile = async fileName => {
     try {
-      if ((await trash(fileName)) === undefined) {
-        throw new Error('No file was deleted')
-      }
+      // if ((await trash(fileName)) === undefined) {
+      //   throw new Error('No file was deleted')
+      // }
       await deleteTemplateFromServer(fileName);
       this.props.addAlert('File successfully removed', 'success')
     } catch (e) {
