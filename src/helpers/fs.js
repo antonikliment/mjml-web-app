@@ -4,7 +4,7 @@ import path from 'path'
 import { promisify } from 'es6-promisify'
 import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
-import { saveOnServer, readFromServer } from 'api-client';
+import { getFilesFromServer, saveOnServer, readFromServer } from 'api-client';
 
 const { dialog } = remote
 
@@ -68,11 +68,16 @@ export function sortFiles(files) {
 }
 
 export async function readDir(p) {
+  const files = await getFilesFromServer(p);
+  return files;
+  /*
   const filesList = await fsReadDir(p)
+
   const filtered = filesList.filter(f => !f.startsWith('.'))
   const getFileInfo = getFileInfoFactory(p)
   const enriched = await Promise.all(filtered.map(getFileInfo))
   return enriched
+  */
 }
 
 export function fileDialog(options) {
