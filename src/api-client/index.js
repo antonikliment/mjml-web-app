@@ -11,7 +11,7 @@ function pathConverter(path) {
 
 export async function readFromServer(path) {
   const { projectName, fileName } = pathConverter(path);
-  const res = await fetch(`http://localhost:5000/${projectName}/${fileName}`, {
+   const res = await fetch(`http://localhost:5000/${projectName}/${fileName}`, {
      method: "GET"
    });
    const template = await res.text();
@@ -44,4 +44,21 @@ export async function deleteProjectFromServer(path) {
      method: "DELETE"
   });
   return res;
+}
+
+/*
+  {
+  name: "",
+  path: path,
+  isFolder: false
+}
+*/
+export async function getFilesFromServer(path) {
+    const pathBlock = path.split("/")
+    const projectName = pathBlock.pop()
+    const res = await fetch(`http://localhost:5000/${projectName}`, {
+      method: "GET"
+    });
+    const list = await res.json();
+    return list.map(name=>({ name, path: `/${projectName}/${name}`, isFolder: false }))
 }
