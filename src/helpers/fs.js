@@ -4,10 +4,10 @@ import path from 'path'
 import { promisify } from 'es6-promisify'
 import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
-import { getFilesFromServer, saveOnServer, readFromServer } from 'api-client';
+import { getFilesFromServer, saveOnServer, readFromServer, deleteTemplateFromServer } from 'api-client';
 
 const { dialog } = remote
-
+export const deleteFile = (fileName)=> deleteTemplateFromServer(fileName);
 export const fsReadDir = promisify(fs.readdir)
 export const fsRename = promisify(fs.rename)
 // const fsReadFileFromDisk = promisify(fs.readFile)
@@ -26,8 +26,24 @@ export async function fsWriteFile(...args) {
   return saveOnServer(...args)
   // await fsWriteFileToDisk(...args)
 }
+export async function readFile(path, options, cb) {
+  try {
+    const res  = await fsReadFile(path, options)
+    cb(null, res);
+  }catch(e) {
+    cb(e, null);
+  }
+}
+export async function writeFile(path, defaultMJML, cb) {
+  try {
+    const res  = await fsWriteFile(path, defaultMJML)
+    cb(null, res);
+  }catch(e) {
+    cb(e);
+  }
+}
 
-function getFileInfoFactory(p) {
+export function getFileInfoFactory(p) {
   return async name => {
     const fullPath = path.resolve(p, name)
     try {
