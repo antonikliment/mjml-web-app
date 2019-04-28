@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import pathModule from 'path'
-import trash from 'trash'
 
-import { deleteTemplateFromServer } from 'api-client';
+import { saveOnServer, deleteTemplateFromServer } from 'api-client';
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -84,14 +83,25 @@ class ProjectPage extends Component {
     })
   }
 
-  handleAddFile = fileName => {
-    fs.writeFile(fileName, defaultMJML, err => {
-      if (err) {
-        this.props.addAlert('Error creating file', 'error')
-        throw new Error(err)
-      }
+  handleAddFile = async fileName => {
+    // Add req
+    try {
+      await saveOnServer(fileName, defaultMJML);
+    } catch(err) {
+      this.props.addAlert('Error creating file', 'error')
+      throw new Error(err)
+    } finally {
+
       this._filelist.refresh()
-    })
+    }
+    // 
+    // fs.writeFile(fileName, defaultMJML, err => {
+    //   if (err) {
+    //     this.props.addAlert('Error creating file', 'error')
+    //     throw new Error(err)
+    //   }
+    //   this._filelist.refresh()
+    // })
   }
 
   handleRemoveFile = async fileName => {
