@@ -18,6 +18,15 @@ export async function readFromServer(path) {
    return template;
 }
 
+export async function createProject(path) {
+  const pathBlock = path.split("/")
+  const projectName = pathBlock.pop()
+  const res = await fetch(`http://localhost:5000/${projectName}`, {
+     method: "POST"
+   });
+  return res;
+}
+
 export async function saveOnServer(path, fileData) {
   const formData = new FormData();
   const { projectName, fileName } = pathConverter(path);
@@ -53,6 +62,14 @@ export async function deleteProjectFromServer(path) {
   isFolder: false
 }
 */
+export async function getProjectFromServer(path) {
+  const pathBlock = path.split("/")
+  const projectName = pathBlock.pop()
+  const res = await fetch(`http://localhost:5000/${projectName}`, {
+    method: "GET"
+  });
+  return res.json();
+}
 export async function getFilesFromServer(path) {
     const pathBlock = path.split("/")
     const projectName = pathBlock.pop()

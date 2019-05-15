@@ -1,4 +1,5 @@
 const {
+  mkdirSync,
   rmdirSync,
   existsSync,
   lstatSync,
@@ -43,8 +44,13 @@ function removeTemplate(projectName, templateName) {
 function removeProject(projectName) {
   return deleteFolderRecursive(`${__dirname}/templates/${projectName}`);
 }
+function createProject(projectName) {
+  const path = `${__dirname}/templates/${projectName}`
+  return mkdirSync(path);
+}
 
 module.exports = {
+  createProject,
   listProjects,
   listTemplates,
   removeTemplate,

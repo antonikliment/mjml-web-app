@@ -1,7 +1,9 @@
 const express = require('express');
+
 const fileUpload = require('express-fileupload');
 const {
   removeProject,
+  createProject,
   listProjects,
   listTemplates,
   removeTemplate
@@ -23,6 +25,11 @@ app.delete('/:projectName', (req, res) => {
   removeProject(projectName);
   res.send(`${projectName} was deleted`)
 });
+app.post('/:projectName', (req, res) => {
+  const { projectName } = req.params
+  const files = createProject(projectName);
+  res.send(files);
+})
 
 app.get('/:projectName', (req, res) => {
   const { projectName } = req.params

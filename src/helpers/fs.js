@@ -4,17 +4,24 @@ import path from 'path'
 import { promisify } from 'es6-promisify'
 import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
-import { getFilesFromServer, saveOnServer, readFromServer, deleteTemplateFromServer } from 'api-client';
+import {
+  createProject,
+  getProjectFromServer,
+  getFilesFromServer,
+  saveOnServer,
+  readFromServer,
+  deleteTemplateFromServer
+} from 'api-client';
 
 const { dialog } = remote
 export const deleteFile = (fileName)=> deleteTemplateFromServer(fileName);
-export const fsReadDir = promisify(fs.readdir)
+export const fsReadDir = getProjectFromServer;
 export const fsRename = promisify(fs.rename)
 // const fsReadFileFromDisk = promisify(fs.readFile)
 // const fsWriteFileToDisk = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
-export const fsMkdir = promisify(fs.mkdir)
+export const fsMkdir = createProject
 export const fsUnlink = promisify(fs.unlink)
 export const recursiveCopy = promisify(ncp)
 
