@@ -4,7 +4,8 @@ const {
   existsSync,
   lstatSync,
   readdirSync,
-  unlinkSync
+  unlinkSync,
+  renameSync
  } = require('fs');
 const { join } = require('path');
 
@@ -48,9 +49,12 @@ function createProject(projectName) {
   const path = `${__dirname}/templates/${projectName}`
   return mkdirSync(path);
 }
-
+function renameTemplate(oldPath, newPath) {
+  return renameSync(oldPath, newPath);
+}
 module.exports = {
   createProject,
+  renameTemplate,
   listProjects,
   listTemplates,
   removeTemplate,

@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const fileUpload = require('express-fileupload');
 const {
@@ -6,13 +7,16 @@ const {
   createProject,
   listProjects,
   listTemplates,
-  removeTemplate
+  removeTemplate,
+  renameTemplate
 } = require('./template-service');
 
 const app = express()
 const port = 5000;
 
-app.use(fileUpload({ createParentPath: true }))
+app.use(bodyParser.json());
+
+app.use(fileUpload({ createParentPath: true }));
 app.use(express.static(`${__dirname}/templates`));
 
 app.get('/', (req, res) => {
@@ -42,6 +46,16 @@ app.delete('/:projectName/:templateName', (req, res) => {
   removeTemplate(projectName, templateName);
   res.send(`${templateName} was deleted`)
 });
+app.patch('/:projectName/:templateName', (req, res) => {
+  const { projectName, templateName } = req.params;
+  const { newTemplateName } = req.body;
+  const originalPath  = `${__dirname}/templates/${projectName}/${templateName}`;
+  const newPath  = `${__dirname}/templates/${projectName}/${newTemplateName}`;
+
+  renameTemplate(originalPath, newPath)
+
+  res.send(`${originalPath} was renamed ${newPath}`)
+})
 app.post('/:projectName/:templateName', (req, res) => {
   const { projectName, templateName } = req.params;
   if (!req.files || Object.keys(req.files).length === 0) {
@@ -56,8 +70,9 @@ app.post('/:projectName/:templateName', (req, res) => {
       return res.status(500).send(err)
     }
 
-    res.send(`File uploaded to ${  uploadPath}`);
+    res.send(`File uploaded to ${uploadPath}`);
   })
 });
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

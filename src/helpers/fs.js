@@ -6,6 +6,7 @@ import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
 import {
   createProject,
+  renameTemplate,
   getProjectFromServer,
   getFilesFromServer,
   saveOnServer,
@@ -14,9 +15,9 @@ import {
 } from 'api-client';
 
 const { dialog } = remote
-export const deleteFile = (fileName)=> deleteTemplateFromServer(fileName);
+export const deleteFile = deleteTemplateFromServer;
 export const fsReadDir = getProjectFromServer;
-export const fsRename = promisify(fs.rename)
+export const fsRename = renameTemplate
 // const fsReadFileFromDisk = promisify(fs.readFile)
 // const fsWriteFileToDisk = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)

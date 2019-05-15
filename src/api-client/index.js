@@ -27,6 +27,21 @@ export async function createProject(path) {
   return res;
 }
 
+export async function renameTemplate(oldPath, newPath) {
+  const { projectName, fileName } = pathConverter(oldPath);
+  const pathBlock = newPath.split("/");
+  const newTemplateName = pathBlock.pop();
+  const body = { newTemplateName };
+
+  const res = await fetch(`http://localhost:5000/${projectName}/${fileName}`, {
+     method: "PATCH",
+     headers: {
+        'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(body)
+  });
+  return res;
+}
 export async function saveOnServer(path, fileData) {
   const formData = new FormData();
   const { projectName, fileName } = pathConverter(path);
