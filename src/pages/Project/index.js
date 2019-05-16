@@ -19,7 +19,9 @@ import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
-import { shell, clipboard } from 'electron'
+
+const { shell, clipboard } = require('../../electron-wrapper');
+
 import beautifyJS from 'js-beautify'
 
 import defaultMJML from 'data/defaultMJML'

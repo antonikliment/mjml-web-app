@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { shell, clipboard } from 'electron'
+
+const { shell, clipboard } = require('../../electron-wrapper');
+
 import { connect } from 'react-redux'
 import IconErr from 'react-icons/io/android-sad'
 import IconCopy from 'react-icons/md/content-copy'

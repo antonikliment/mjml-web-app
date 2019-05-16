@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import { hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
-import { ipcRenderer } from 'electron'
+
+const { ipcRenderer } = require('../electron-wrapper');
 
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'

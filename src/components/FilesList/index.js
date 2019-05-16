@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { ipcRenderer } from 'electron'
+
+const { ipcRenderer } = require('../../electron-wrapper');
+
 import { connect } from 'react-redux'
 import cx from 'classnames'
 import pathModule from 'path'

@@ -1,4 +1,4 @@
-import { app, shell } from 'electron'
+import { app, shell } from 'electron-wrapper'
 
 export default function buildMenu(mainWindow) {
   return [

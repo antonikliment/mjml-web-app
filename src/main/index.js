@@ -1,4 +1,5 @@
-import { app, BrowserWindow, Menu } from 'electron'
+const { app, BrowserWindow, Menu } = require('../electron-wrapper');
+
 import * as path from 'path'
 import { format as formatUrl } from 'url'
 import { autoUpdater } from 'electron-updater'
@@ -97,7 +98,6 @@ app.on('activate', () => {
     mainWindow = createMainWindow()
   }
 })
-
 app.on('ready', async () => {
   if (isDevelopment) {
     await installExtensions()
