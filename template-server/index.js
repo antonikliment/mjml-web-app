@@ -12,6 +12,8 @@ const {
   renameTemplate
 } = require('./template-service');
 
+const mjmlEngine = require('./mjml-remote-engine')
+
 const app = express()
 app.use(cors())
 const port = 5000;
@@ -20,6 +22,11 @@ app.use(bodyParser.json());
 
 app.use(fileUpload({ createParentPath: true }));
 app.use(express.static(`${__dirname}/templates`));
+
+app.post('/remote', (req, res) => {
+  const out = mjmlEngine(req.body.mjmlContent);
+  res.send(out)
+})
 
 app.get('/', (req, res) => {
   const projects = listProjects(`${__dirname}/templates`);
