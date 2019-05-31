@@ -19,6 +19,9 @@ const webContents = {
 }
 class BrowserWindow {
   constructor() {
+   this.loadURL = (...args) => {
+      console.log(args);
+   }
    this.webContents = webContents
   }
 }
@@ -26,7 +29,7 @@ module.exports = {
   shell: {
     openExternal: (href) => window.open(href, '_blank')
   },
-  clipboard: console.error,
+  clipboard: navigator.clipboard,
   app: console.error,
   ipcRenderer: {
     on: (event, cb) => {
@@ -42,6 +45,7 @@ module.exports = {
   BrowserWindow,
   Menu: console.error,
   remote: {
+    BrowserWindow,
     dialog: {
       showOpenDialog: (...args) => {
        console.log('dialog->showOpenDialog')
