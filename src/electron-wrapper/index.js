@@ -45,5 +45,16 @@ module.exports = {
   },
   BrowserWindow:console.error,
   Menu:console.error,
-  remote:console.error
+  remote: {
+    dialog: {
+      showOpenDialog: (...args) => {
+       console.log('dialog->showOpenDialog')
+       console.warn(...args)
+     },
+     showSaveDialog: (...args) => {
+      console.log('dialog->showOpenDialog')
+      console.warn(...args)
+     }
+    }
+  }
 };
