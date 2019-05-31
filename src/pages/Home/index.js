@@ -60,7 +60,7 @@ class HomePage extends Component {
             <IconCreate size={20} className="mr-5" />
             {'New project'}
           </Button>
-          <Button ghost onClick={() => addProject()}>
+          <Button style={{display: 'none'}}ghost onClick={() => addProject()}>
             <IconOpen size={20} className="mr-5" />
             {'Open project'}
           </Button>
