@@ -3,7 +3,7 @@ const path = require('path');
 const pkg = require('../package.json');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/renderer/index.js'],
+  entry: ['@babel/polyfill', './src/renderer/index.js'],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
     // options for resolving module requests
@@ -18,8 +18,8 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        loader: 'babel-loader'//,
-        // exclude: /(node_modules)/
+        loader: 'babel-loader',
+        exclude: /node_modules\/(?!(react-icons|module2)\/).*/ 
       },
       {
       test: /\.(css|scss)$/,
