@@ -42,6 +42,20 @@ export async function renameTemplate(oldPath, newPath) {
   });
   return res;
 }
+
+export async function mjmlRemote(mjmlContent) {
+  const res =  await fetch('http://localhost:5000/remote', {
+     method: "POST",
+     headers: {
+        'Content-Type': 'application/json'
+     },
+     body: JSON.stringify({
+       mjmlContent
+     })
+   });
+   return res.json();
+}
+
 export async function saveOnServer(path, fileData) {
   const formData = new FormData();
   const { projectName, fileName } = pathConverter(path);

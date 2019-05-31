@@ -4,6 +4,7 @@ import defaultsDeep from 'lodash/defaultsDeep'
 import omit from 'lodash/omit'
 
 import { setError } from 'reducers/error'
+import { listProjects } from 'api-client'
 
 const storageGet = storage.get
 const storageSet = storage.set
@@ -13,7 +14,8 @@ export function loadSettings() {
     let shouldResetDefaults = false
     let res
     try {
-      res = await storageGet('settings')
+      res = await listProjects()
+      // res = await storageGet('settings')
 
       // check for old format and reformat
       if (typeof res.projects === 'object' && !(res.projects instanceof Array)) {
