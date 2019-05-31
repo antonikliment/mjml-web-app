@@ -6,6 +6,22 @@ const { app, BrowserWindow, Menu, shell, clipboard, ipcRenderer, remote  } = req
 // const modClipboard = wrapFunctions(clipboard, constructSpy('clipboard'));
 // const modRemote = wrapFunctions(remote, constructSpy('remote'));
 
+const webContents = {
+  send: (event)=>{
+    const evt = new Event(event)
+    window.dispatchEvent(evt);
+  },
+  on: (event, cb) => {
+    console.log('add event listener', event )
+    window.addEventListener(event, cb)
+  }
+
+}
+class BrowserWindow {
+  constructor(){
+    this.webContents = webContents
+  }
+}
 module.exports = {
   shell: {
     openExternal: (href) => window.open(href, '_blank')
@@ -22,7 +38,7 @@ module.exports = {
       console.warn(...args)
     }
   },
-  BrowserWindow: console.error,
+  BrowserWindow,
   Menu: console.error,
   remote: {
     dialog: {
