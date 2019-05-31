@@ -167,9 +167,8 @@ class NewProjectModal extends Component {
     }
     const full = path.join(projectLocation, projectName)
     const locOK = await isEmptyOrDontExist(full)
-    const parentOK = await alreadyExists(projectLocation)
     this.setState({
-      projectLocStatus: parentOK ? (locOK ? 'valid' : 'invalid') : 'parent-invalid',
+      projectLocStatus: (locOK ? 'valid' : 'invalid'),
     })
   }, 250)
 

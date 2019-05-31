@@ -31,11 +31,23 @@ function pathConverter(path) {
 }
 
 function listProjects(path) {
-  return readdirSync(path).map(name => join(path, name)).filter(isDirectory).map(pathConverter)
+  let projects;
+  try {
+    projects= readdirSync(path)
+  } catch(e) {
+    projects = []
+  }
+  return projects.map(name => join(path, name)).filter(isDirectory).map(pathConverter)
 }
 
 function listTemplates(path) {
-  return readdirSync(path).map(name => join(path, name)).filter(isFile).map(pathConverter)
+  let files;
+  try {
+    files= readdirSync(path)
+  } catch(e) {
+    files = []
+  }
+  return files.map(name => join(path, name)).filter(isFile).map(pathConverter)
 }
 
 function removeTemplate(projectName, templateName) {

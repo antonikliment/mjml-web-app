@@ -28,7 +28,9 @@ const constructSpy = (name) => (...args) => {
 // const modRemote = wrapFunctions(remote, constructSpy('remote'));
 
 module.exports = {
-  shell:console.error,
+  shell: {
+    openExternal: (href) => window.open(href, '_blank')
+  },
   clipboard:console.error,
   app:console.error,
   ipcRenderer:console.error,

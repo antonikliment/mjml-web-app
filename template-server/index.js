@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const fileUpload = require('express-fileupload');
 const {
@@ -12,6 +13,7 @@ const {
 } = require('./template-service');
 
 const app = express()
+app.use(cors())
 const port = 5000;
 
 app.use(bodyParser.json());

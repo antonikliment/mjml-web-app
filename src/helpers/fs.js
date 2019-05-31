@@ -121,36 +121,28 @@ export function saveDialog(options) {
 }
 
 export async function isValidDir(path) {
-  try {
-    await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (e) {
-    return false
-  }
-  const stats = await fsStat(path)
-  return stats.isDirectory()
+  // try {
+  //   await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
+  // } catch (e) {
+  //   return false
+  // }
+  // const stats = await fsStat(path)
+  return true // stats.isDirectory()
 }
 
 export async function alreadyExists(location) {
-  try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      return false
-    }
-    return true
-  }
-  return true
+  // try {
+  //   await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
+  // } catch (err) {
+  //   if (err.code === 'ENOENT') {
+  //     return false
+  //   }
+  //   return true
+  // }
+  return false
 }
 
 export async function isEmptyOrDontExist(location) {
-  try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      return true
-    }
-    return false
-  }
   const filesList = await fsReadDir(location)
   return filesList.length === 0
 }
