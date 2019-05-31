@@ -4,7 +4,10 @@ const path = require('path');
 const pkg = require('../package.json');
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/renderer/index.js'],
+  devtool: 'inline-source-map',
+  entry: [
+    '@babel/polyfill', './src/renderer/index.js'
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
     // options for resolving module requests
