@@ -29,10 +29,12 @@ export const fsUnlink = promisify(fs.unlink)
 export const recursiveCopy = console.error
 
 export async function fsReadFile(...args) {
+  console.log('fsReadFile');
   return readFromServer(...args);
   // await fsReadFileFromDisk(...args)
 }
 export async function fsWriteFile(...args) {
+  console.log('fsWriteFile');
   return saveOnServer(...args)
   // await fsWriteFileToDisk(...args)
 }
@@ -148,6 +150,9 @@ export async function isEmptyOrDontExist(location) {
 }
 
 export async function createOrEmpty(location) {
+  console.log('createOrEmpty')
+  await fsMkdir(location)
+  /*
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
   } catch (err) {
@@ -155,6 +160,7 @@ export async function createOrEmpty(location) {
       await fsMkdir(location)
     }
   }
+  */
   const filesList = await fsReadDir(location)
   if (filesList.length > 0) {
     throw new Error('Directory not empty')
@@ -196,11 +202,13 @@ export function execFile(cmd, args, opts = {}, stdinStream) {
 }
 
 export async function fileExists(p) {
+  console.log('fileExists')
+  return false;/*
   try {
     await fsAccess(p, fs.constants.F_OK)
     return true
   } catch (err) {
     // eslint-disable-line
     return false
-  }
+  }*/
 }

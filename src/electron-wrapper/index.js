@@ -33,7 +33,16 @@ module.exports = {
   },
   clipboard:console.error,
   app:console.error,
-  ipcRenderer:console.error,
+  ipcRenderer: {
+    on: (...args)=>{
+      console.log('ipcRenderer->on')
+      console.warn(...args)
+    },
+    removeListener: (...args)=>{
+      console.log('ipcRenderer->removeListener')
+      console.warn(...args)
+    }
+  },
   BrowserWindow:console.error,
   Menu:console.error,
   remote:console.error

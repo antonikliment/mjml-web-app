@@ -8,7 +8,7 @@ import IconChecking from 'react-icons/md/autorenew'
 import IconError from 'react-icons/md/error'
 import IconWarning from 'react-icons/md/warning'
 
-import { exec, fileDialog, fsAccess } from 'helpers/fs'
+import { exec, fileDialog } from 'helpers/fs'
 
 import { updateSettings } from 'actions/settings'
 
@@ -18,7 +18,7 @@ import Radio from 'components/RadioGroup/Radio'
 
 export async function getMJMLVersion(location) {
   try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.R_OK | fs.constants.X_OK)
+    // await fsAccess(location, fs.constants.R_OK | fs.constants.R_OK | fs.constants.X_OK)
     const { err, stdout } = await exec(`${location} --version`)
     if (err) {
       return null

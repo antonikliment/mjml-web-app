@@ -24,7 +24,6 @@ import {
   recursiveCopy,
   fileDialog,
   fsReadFile,
-  fsAccess,
   fsRename,
   fsWriteFile,
   fileExists,
@@ -48,7 +47,6 @@ export function addProject(p) {
       }
     }
 
-    await fsAccess(p, fs.constants.R_OK | fs.constants.W_OK)
 
     dispatch(saveLastOpenedFolder(p))
     dispatch(openProject(p))
