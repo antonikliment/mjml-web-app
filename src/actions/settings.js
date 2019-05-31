@@ -5,8 +5,8 @@ import omit from 'lodash/omit'
 
 import { setError } from 'reducers/error'
 
-const storageGet = promisify(storage.get)
-const storageSet = promisify(storage.set)
+const storageGet = storage.get
+const storageSet = storage.set
 
 export function loadSettings() {
   return async dispatch => {
