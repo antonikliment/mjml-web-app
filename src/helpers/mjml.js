@@ -1,19 +1,13 @@
-// import mjml2html from 'mjml'
-import { get } from 'lodash'
-// import migrate from 'mjml-migrate'
-import path from 'path'
-import stream from 'stream'
+import { mjmlRemote } from 'api-client'
 
-import { execFile, exec } from 'helpers/fs'
-
-import storage from 'refactor/electron-json-storage'
-import { promisify } from 'es6-promisify'
-
-const storageGet = promisify(storage.get)
-
-export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
+export default async function(mjmlContent) {
+  const { html, errors } = await mjmlRemote(mjmlContent)
+  return { html, errors };
+  /*
+  (mjmlContent, filePath, mjmlPath = null, options = {})
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
+      console.error("broken", mjmlContent);
       try {
         const settings = await storageGet('settings')
         const useMjmlConfig = get(settings, 'mjml.useMjmlConfig')
@@ -71,7 +65,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
               ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
               : null,
           }
-          console.error("broken");
+          console.error("broken", mjmlContent);
           // const res = mjml2html(mjmlContent, mjmlOptions)
           const res = {}
           resolve({ html: res.html || '', errors: res.errors || [] })
@@ -81,6 +75,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
       }
     })
   })
+  */
 }
 
 export function wrapIntoMJMLTags(content) {
