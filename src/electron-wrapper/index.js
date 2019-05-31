@@ -18,8 +18,8 @@ const webContents = {
 
 }
 class BrowserWindow {
-  constructor(){
-    this.webContents = webContents
+  constructor() {
+   this.webContents = webContents
   }
 }
 module.exports = {
@@ -29,13 +29,14 @@ module.exports = {
   clipboard: console.error,
   app: console.error,
   ipcRenderer: {
-    on: (...args)=>{
+    on: (event, cb) => {
       console.log('ipcRenderer->on')
-      console.warn(...args)
+      // console.warn(...args)
+      window.addEventListener(event, cb)
     },
-    removeListener: (...args)=>{
+    removeListener: (event, cb) => {
       console.log('ipcRenderer->removeListener')
-      console.warn(...args)
+      window.removeEventListener(event, cb)
     }
   },
   BrowserWindow,
