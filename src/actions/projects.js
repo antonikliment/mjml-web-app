@@ -7,7 +7,7 @@ import { deleteProjectFromServer } from 'api-client';
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
-import takeScreenshot from 'helpers/takeScreenshot'
+import { takeScreenshot } from 'helpers/takeScreenshot'
 
 import { addAlert } from 'reducers/alerts'
 import { openExternalFileOverlay, closeExternalFileOverlay } from 'reducers/externalFileOverlay'
