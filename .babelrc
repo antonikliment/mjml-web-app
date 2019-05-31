@@ -15,6 +15,10 @@
     "stage-0"
   ],
   "plugins": [
-    ["module-resolver", { "root": ["src"] }]
+    [
+      "transform-decorators-legacy",
+      "module-resolver",
+      { "root": ["src"] }
+    ]
   ]
 }

@@ -1,4 +1,4 @@
-import mjml2html from 'mjml'
+// import mjml2html from 'mjml'
 import { get } from 'lodash'
 // import migrate from 'mjml-migrate'
 import path from 'path'
@@ -71,9 +71,9 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
               ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
               : null,
           }
-
-          const res = mjml2html(mjmlContent, mjmlOptions)
-
+          console.error("broken");
+          // const res = mjml2html(mjmlContent, mjmlOptions)
+          const res = {}
           resolve({ html: res.html || '', errors: res.errors || [] })
         }
       } catch (e) {

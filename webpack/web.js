@@ -1,15 +1,25 @@
 const webpack = require('webpack')
-
-const pkg = require('../package.json')
+const path = require('path');
+const pkg = require('../package.json');
 
 module.exports = {
   entry: ['babel-polyfill', './src/renderer/index.js'],
+  resolve: {
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+    // options for resolving module requests
+    // (does not apply to resolving to loaders)
+    modules: [
+      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../node_modules'),
+      'node_modules'
+    ]
+  },
   module: {
     rules: [
       {
         test: /\.js?$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules)/
+        loader: 'babel-loader'//,
+        // exclude: /(node_modules)/
       },
       {
       test: /\.(css|scss)$/,

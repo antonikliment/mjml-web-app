@@ -5,7 +5,7 @@ import { promisify } from 'es6-promisify'
 
 const { remote } = require('../electron-wrapper');
 
-import { exec as x, execFile as xFile } from 'child_process'
+// import { exec as x, execFile as xFile } from 'child_process'
 import {
   createProject,
   renameTemplate,
@@ -188,14 +188,15 @@ export function exec(cmd, opts = {}) {
 export function execFile(cmd, args, opts = {}, stdinStream) {
   return new Promise(resolve => {
     try {
-      const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
-        resolve({
-          err,
-          stdout,
-          stderr,
-        })
-      })
-      stdinStream.pipe(child.stdin)
+      throw Error("todo")
+      // const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
+      //   resolve({
+      //     err,
+      //     stdout,
+      //     stderr,
+      //   })
+      // })
+      // stdinStream.pipe(child.stdin)
     } catch (err) {
       resolve({ err })
     }
