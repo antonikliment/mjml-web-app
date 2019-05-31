@@ -20,7 +20,7 @@ import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
 
-const { shell, clipboard } = require('../../electron-wrapper');
+const { shell, clipboard } = require('../../refactor/electron');
 
 import beautifyJS from 'js-beautify'
 

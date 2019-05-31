@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('../electron-wrapper');
+const { app, BrowserWindow, Menu } = require('../refactor/electron');
 
 import * as path from 'path'
 import { format as formatUrl } from 'url'

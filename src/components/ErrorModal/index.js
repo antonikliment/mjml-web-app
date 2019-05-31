@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { shell, clipboard } = require('../../electron-wrapper');
+const { shell, clipboard } = require('../../refactor/electron');
 
 import { connect } from 'react-redux'
 import IconErr from 'react-icons/io/android-sad'

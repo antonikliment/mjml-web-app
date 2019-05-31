@@ -3,7 +3,7 @@ import fs from 'fs-wrapper'
 import path from 'path'
 import { promisify } from 'es6-promisify'
 
-const { remote } = require('../electron-wrapper');
+const { remote } = require('../refactor/electron');
 
 // import { exec as x, execFile as xFile } from 'child_process'
 import {

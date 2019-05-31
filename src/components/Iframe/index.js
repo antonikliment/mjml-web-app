@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const { shell } = require('../../electron-wrapper');
+const { shell } = require('../../refactor/electron');
 
 class Iframe extends Component {
   static propTypes = {

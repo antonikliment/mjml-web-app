@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 
-const { ipcRenderer } = require('../electron-wrapper');
+const { ipcRenderer } = require('../refactor/electron');
 
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'

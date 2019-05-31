@@ -1,4 +1,4 @@
-const { remote } = require('../electron-wrapper');
+const { remote } = require('../refactor/electron');
 
 import path from 'path'
 
