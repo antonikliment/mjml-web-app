@@ -35,7 +35,7 @@ class ProjectsList extends Component {
     activePath: null,
     isDeleteModalOpened: false,
     isRenameModalOpened: false,
-    shouldDeleteFolder: false,
+    shouldDeleteFolder: true,
   }
 
   componentWillUnmount() {
@@ -136,17 +136,12 @@ class ProjectsList extends Component {
           )}
         <ConfirmModal
           isOpened={isDeleteModalOpened}
-          yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}
+          yepCTA={'Delete project'}
           nopCTA="Cancel"
           onCancel={this.handleCloseDeleteModal}
           onConfirm={this.handleConfirmRemove}
         >
-          <h2 className="mb-20">{'Remove project from list?'}</h2>
-          {!isHome && (
-            <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
-              {'Also remove folder and files from disk'}
-            </CheckBox>
-          )}
+          <h2 className="mb-20">{'Delete project folder?'}</h2>
         </ConfirmModal>
         <RenameModal
           isOpened={isRenameModalOpened}
