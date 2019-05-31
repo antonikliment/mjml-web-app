@@ -1,7 +1,7 @@
-import fs from 'fs'
+import fs from 'fs-wrapper'
 import os from 'os'
 import path from 'path'
-import trash from 'trash'
+// import trash from 'trash'
 
 import { deleteProjectFromServer } from 'api-client';
 import { replace } from 'react-router-redux'
@@ -61,7 +61,7 @@ export function removeProject(p, shouldDeleteFolder = false) {
     dispatch(saveSettings())
     if (shouldDeleteFolder) {
       await deleteProjectFromServer(p)
-      trash(p)
+      // trash(p)
     }
   }
 }

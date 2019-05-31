@@ -1,3 +1,4 @@
+/*
 const { app, BrowserWindow, Menu, shell, clipboard, ipcRenderer, remote  } = require('electron')
 
 
@@ -20,18 +21,18 @@ function wrapFunctions(obj, fnWrapper) {
 const constructSpy = (name) => (...args) => {
   console.log(`Intercepted call to ${name}`);
   console.log(args);
-}
+}*/
 
 // const modShell = wrapFunctions(shell, constructSpy('shell'));
 // const modClipboard = wrapFunctions(clipboard, constructSpy('clipboard'));
 // const modRemote = wrapFunctions(remote, constructSpy('remote'));
 
 module.exports = {
-  shell,
-  clipboard,
-  app,
-  ipcRenderer,
-  BrowserWindow,
-  Menu,
-  remote
+  shell:console.error,
+  clipboard:console.error,
+  app:console.error,
+  ipcRenderer:console.error,
+  BrowserWindow:console.error,
+  Menu:console.error,
+  remote:console.error
 };

@@ -1,5 +1,5 @@
-import fs from 'fs'
-import { ncp } from 'ncp'
+import fs from 'fs-wrapper'
+// import { ncp } from 'ncp'
 import path from 'path'
 import { promisify } from 'es6-promisify'
 
@@ -26,7 +26,7 @@ export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
 export const fsMkdir = createProject
 export const fsUnlink = promisify(fs.unlink)
-export const recursiveCopy = promisify(ncp)
+export const recursiveCopy = console.error
 
 export async function fsReadFile(...args) {
   return readFromServer(...args);

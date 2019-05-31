@@ -1,12 +1,12 @@
 import mjml2html from 'mjml'
 import { get } from 'lodash'
-import migrate from 'mjml-migrate'
+// import migrate from 'mjml-migrate'
 import path from 'path'
 import stream from 'stream'
 
 import { execFile, exec } from 'helpers/fs'
 
-import storage from 'electron-json-storage'
+import storage from 'refactor/electron-json-storage'
 import { promisify } from 'es6-promisify'
 
 const storageGet = promisify(storage.get)
@@ -92,5 +92,6 @@ export function wrapIntoMJMLTags(content) {
 }
 
 export function migrateToMJML4(content) {
-  return migrate(content)
+  console.error("Not implemented")
+  //return migrate(content)
 }

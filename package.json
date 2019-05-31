@@ -7,6 +7,7 @@
   "repository": "https://github.com/mjmlio/mjml-app",
   "scripts": {
     "dev": "electron-webpack dev",
+    "dev-web": "webpack-dev-server --config webpack/web.js",
     "compile": "electron-webpack",
     "release": "build",
     "site": "webpack-dev-server --config webpack/site.js --content-base site",
@@ -62,6 +63,7 @@
     "babel-eslint": "^8.2.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -80,6 +82,7 @@
     "node-sass": "^4.8.3",
     "prettier": "^1.11.1",
     "redux-logger": "^3.0.6",
+    "resolve-url-loader": "^3.1.0",
     "sass-loader": "^6.0.7",
     "webpack": "3.11.0"
   },

@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs-wrapper'
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
