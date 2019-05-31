@@ -52,7 +52,12 @@ export async function saveOnServer(path, fileData) {
    });
   return res;
 }
-
+export async function listProjects() {
+  const res = await fetch(`http://localhost:5000`, {
+     method: "GET"
+  });
+  return res.json();
+}
 export async function deleteTemplateFromServer(path) {
   const { projectName, fileName } = pathConverter(path);
   const res = await fetch(`http://localhost:5000/${projectName}/${fileName}`, {
