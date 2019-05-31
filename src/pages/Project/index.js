@@ -231,7 +231,7 @@ class ProjectPage extends Component {
                 {'Beautify'}
               </Button>,
             ]}
-            <Button transparent onClick={this.handleOpenInBrowser}>
+            <Button style={{display: 'none'}} transparent onClick={this.handleOpenInBrowser}>
               <FaFolderOpen style={{ marginRight: 5 }} />
               {'Open'}
             </Button>
