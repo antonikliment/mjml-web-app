@@ -1,4 +1,4 @@
-import fs from 'fs-wrapper'
+import fs from 'refactor/fs-wrapper'
 // import { ncp } from 'ncp'
 import path from 'path'
 import { promisify } from 'es6-promisify'

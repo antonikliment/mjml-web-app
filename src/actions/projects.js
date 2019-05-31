@@ -1,4 +1,4 @@
-import fs from 'fs-wrapper'
+import fs from 'refactor/fs-wrapper'
 import os from 'os'
 import path from 'path'
 // import trash from 'trash'
