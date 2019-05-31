@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
 const pkg = require('../package.json');
 
@@ -19,7 +20,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules\/(?!(react-icons|module2)\/).*/ 
+        exclude: /node_modules\/(?!(react-icons|module2)\/).*/
       },
       {
       test: /\.(css|scss)$/,
@@ -46,6 +47,9 @@ module.exports = {
     new webpack.DefinePlugin({
       __MJML_APP_VERSION__: JSON.stringify(pkg.version),
       __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/template.html',
     }),
   ],
 }
