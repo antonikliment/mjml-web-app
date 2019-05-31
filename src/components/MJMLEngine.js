@@ -147,14 +147,15 @@ class MJMLEngine extends Component {
 
     return (
       <RadioGroup value={mjmlEngine} onChange={this.handleChangeEngine}>
-        <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__})`}</Radio>
-        <Radio value="manual">
+        <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__}) @TODO`}</Radio>
+        <Radio value="manual" disabled>
           <div className="flow-v-10">
-            <div>{'Use a custom MJML engine (slower and disables validation)'}</div>
+            <div>{'Use a custom MJML engine (slower and disables validation) @TODO'}</div>
             {mjmlEngine === 'manual' && (
               <div className="flow-v-10">
                 <div className="d-f ai-s fg-1">
                   <input
+                    disabled
                     autoFocus
                     className="fg-1"
                     value={mjmlPath}
