@@ -1,6 +1,3 @@
-/*
-const { app, BrowserWindow, Menu, shell, clipboard, ipcRenderer, remote  } = require('electron')
-*/
 const webContents = {
   send: (event)=>{
     const evt = new Event(event)
