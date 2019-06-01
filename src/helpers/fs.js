@@ -5,7 +5,6 @@ import { promisify } from 'es6-promisify'
 
 const { remote } = require('../refactor/electron');
 
-// import { exec as x, execFile as xFile } from 'child_process'
 import {
   createProject,
   renameTemplate,

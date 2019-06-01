@@ -23,6 +23,9 @@ app.use(bodyParser.json());
 app.use(fileUpload({ createParentPath: true }));
 app.use(express.static(`${__dirname}/templates`));
 
+app.get('/info/mjml-version', (req, res) => {
+  res.send({ version: "todo" })
+});
 app.post('/remote', (req, res) => {
   const {
     mjmlContent,

@@ -16,19 +16,7 @@ import Button from 'components/Button'
 import RadioGroup from 'components/RadioGroup'
 import Radio from 'components/RadioGroup/Radio'
 
-export async function getMJMLVersion(location) {
-  try {
-    // await fsAccess(location, fs.constants.R_OK | fs.constants.R_OK | fs.constants.X_OK)
-    const { err, stdout } = await exec(`${location} --version`)
-    if (err) {
-      return null
-    }
-    const version = stdout.trim()
-    return version
-  } catch (e) {
-    return null
-  }
-}
+import { getMJMLVersion } from 'api-client'
 
 @connect(
   state => {

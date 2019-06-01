@@ -112,3 +112,11 @@ export async function getFilesFromServer(path) {
     const list = await res.json();
     return list;
 }
+
+
+export async function getMJMLVersion() {
+  const res = await fetch(`http://localhost:5000/info/mjml-version`, {
+    method: "GET"
+  });
+  return res.json();
+}
