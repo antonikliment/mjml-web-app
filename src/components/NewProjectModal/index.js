@@ -282,7 +282,7 @@ class NewProjectModal extends Component {
             {step === 'template' && (
               <Button ghost onClick={this.handlePrev}>
                 <IconArrowLeft className="mr-10" />
-                {'Choose location and name'}
+                {'Change project name'}
               </Button>
             )}
             <Button transparent onClick={closeModal}>
