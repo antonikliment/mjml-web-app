@@ -1,13 +1,19 @@
 const mjml2html = require('mjml')
 
+const BASE_PATH = `${__dirname }/templates/`
 
-// const { execFile, exec } = require('helpers/fs')
 
-
-module.exports = function (mjmlContent) {
-  return mjml2html(mjmlContent)
+module.exports = function(mjmlContent, remoteFolderPath) {
+  const options = {
+    filePath: BASE_PATH + remoteFolderPath
+  }
+  try{
+    return mjml2html(mjmlContent, options)
+  }catch(e){
+    console.warn(e)
+    return "OPS"
+  }
 }
-
 // export function migrateToMJML4(content) {
 //   console.error("Not implemented")
 //   //return migrate(content)

@@ -24,7 +24,11 @@ app.use(fileUpload({ createParentPath: true }));
 app.use(express.static(`${__dirname}/templates`));
 
 app.post('/remote', (req, res) => {
-  const out = mjmlEngine(req.body.mjmlContent);
+  const {
+    mjmlContent,
+    remoteFolderPath
+  } = req.body
+  const out = mjmlEngine(mjmlContent, remoteFolderPath);
   res.send(out)
 })
 

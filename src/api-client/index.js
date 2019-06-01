@@ -43,14 +43,15 @@ export async function renameTemplate(oldPath, newPath) {
   return res;
 }
 
-export async function mjmlRemote(mjmlContent) {
+export async function mjmlRemote(mjmlContent, remoteFolderPath) {
   const res =  await fetch('http://localhost:5000/remote', {
      method: "POST",
      headers: {
         'Content-Type': 'application/json'
      },
      body: JSON.stringify({
-       mjmlContent
+       mjmlContent,
+       remoteFolderPath
      })
    });
    return res.json();
