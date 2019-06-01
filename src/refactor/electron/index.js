@@ -22,10 +22,11 @@ class BrowserWindow {
 }
 module.exports = {
   shell: {
-    openExternal: (href) => window.open(href, '_blank')
+    openExternal: (href) => window.open(href, '_blank'),
+    showItemInFolder: console.warn,
+    openItem: console.warn
   },
   clipboard: navigator.clipboard,
-  BrowserWindow,
   remote: {
     BrowserWindow,
     dialog: {
