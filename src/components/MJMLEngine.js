@@ -8,7 +8,7 @@ import IconChecking from 'react-icons/md/autorenew'
 import IconError from 'react-icons/md/error'
 import IconWarning from 'react-icons/md/warning'
 
-import { exec, fileDialog } from 'helpers/fs'
+import { fileDialog } from 'helpers/fs'
 
 import { updateSettings } from 'actions/settings'
 

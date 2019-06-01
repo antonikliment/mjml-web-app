@@ -166,49 +166,7 @@ export async function createOrEmpty(location) {
   }
 }
 
-export function exec(cmd, opts = {}) {
-  return new Promise(resolve => {
-    try {
-      x(cmd, opts, (err, stdout, stderr) => {
-        resolve({
-          err,
-          stdout,
-          stderr,
-        })
-      })
-    } catch (err) {
-      resolve({ err })
-    }
-  })
-}
-
-export function execFile(cmd, args, opts = {}, stdinStream) {
-  return new Promise(resolve => {
-    try {
-      throw Error("todo")
-      // const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
-      //   resolve({
-      //     err,
-      //     stdout,
-      //     stderr,
-      //   })
-      // })
-      // stdinStream.pipe(child.stdin)
-    } catch (err) {
-      resolve({ err })
-    }
-  })
-}
-
 export async function fileExists(p) {
-  console.log('fileExists')
+  console.log('fileExists');
   return false;
-  /*
-  try {
-    await fsAccess(p, fs.constants.F_OK)
-    return true
-  } catch (err) {
-    // eslint-disable-line
-    return false
-  }*/
 }
