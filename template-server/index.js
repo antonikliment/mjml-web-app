@@ -47,7 +47,11 @@ app.post('/:projectName', (req, res) => {
   const files = createProject(projectName);
   res.send(files);
 })
-
+app.get('/:projectName/:subfolder', (req, res) => {
+  const { projectName, subfolder } = req.params
+  const files = listTemplates(`${__dirname}/templates/${projectName}/${subfolder}`);
+  res.send(files);
+});
 app.get('/:projectName', (req, res) => {
   const { projectName } = req.params
   const files = listTemplates(`${__dirname}/templates/${projectName}`);
@@ -59,6 +63,7 @@ app.delete('/:projectName/:templateName', (req, res) => {
   removeTemplate(projectName, templateName);
   res.send(`${templateName} was deleted`)
 });
+
 app.patch('/:projectName/:templateName', (req, res) => {
   const { projectName, templateName } = req.params;
   const { newTemplateName } = req.body;
@@ -69,6 +74,7 @@ app.patch('/:projectName/:templateName', (req, res) => {
 
   res.send(`${originalPath} was renamed ${newPath}`)
 })
+
 app.post('/:projectName/:templateName', (req, res) => {
   const { projectName, templateName } = req.params;
   if (!req.files || Object.keys(req.files).length === 0) {
