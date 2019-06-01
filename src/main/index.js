@@ -2,7 +2,6 @@ const { app, BrowserWindow, Menu } = require('../refactor/electron');
 
 import * as path from 'path'
 import { format as formatUrl } from 'url'
-// import { autoUpdater } from 'electron-updater'
 
 import buildMenu from 'menu'
 
@@ -10,24 +9,11 @@ const isProduction = process.env.NODE_ENV === 'production'
 const isDevelopment = !isProduction
 
 // allows app to find node when launched from GUI
-// const fixPath = require('fix-path')
-//
-// fixPath()
 
 let mainWindow
 let menu
 
 const [, openPath] = process.argv
-/*
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer')
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS
-  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS']
-  return Promise.all(
-    extensions.map(name => installer.default(installer[name], forceDownload)),
-  ).catch(console.log) // eslint-disable-line
-}
-*/
 function createMainWindow() {
   const w = new BrowserWindow({
     webPreferences: {
@@ -45,23 +31,6 @@ function createMainWindow() {
     }
     w.show()
   })
-  // Not required for web version
-  // if (isDevelopment) {
-  //   w.webContents.openDevTools()
-  //
-  //   w.webContents.on('context-menu', (e, props) => {
-  //     const { x, y } = props
-  //
-  //     Menu.buildFromTemplate([
-  //       {
-  //         label: 'Inspect element',
-  //         click() {
-  //           w.inspectElement(x, y)
-  //         },
-  //       },
-  //     ]).popup(mainWindow)
-  //   })
-  // }
 
   const url = isDevelopment
     ? `http://localhost:${process.env.ELECTRON_WEBPACK_WDS_PORT}`
@@ -99,11 +68,5 @@ app.on('activate', () => {
   }
 })
 app.on('ready', async () => {
-  // if (isDevelopment) {
-  //   await installExtensions()
-  // }
   mainWindow = createMainWindow()
-  // if (isProduction) {
-  //   autoUpdater.checkForUpdatesAndNotify()
-  // }
 })

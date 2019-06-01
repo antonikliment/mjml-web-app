@@ -1,11 +1,6 @@
 /*
 const { app, BrowserWindow, Menu, shell, clipboard, ipcRenderer, remote  } = require('electron')
 */
-
-// const modShell = wrapFunctions(shell, constructSpy('shell'));
-// const modClipboard = wrapFunctions(clipboard, constructSpy('clipboard'));
-// const modRemote = wrapFunctions(remote, constructSpy('remote'));
-
 const webContents = {
   send: (event)=>{
     const evt = new Event(event)
