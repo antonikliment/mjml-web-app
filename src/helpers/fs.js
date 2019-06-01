@@ -202,7 +202,8 @@ export function execFile(cmd, args, opts = {}, stdinStream) {
 
 export async function fileExists(p) {
   console.log('fileExists')
-  return false;/*
+  return false;
+  /*
   try {
     await fsAccess(p, fs.constants.F_OK)
     return true

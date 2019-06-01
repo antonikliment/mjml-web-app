@@ -26,10 +26,6 @@ module.exports = {
   },
   clipboard: navigator.clipboard,
   app: document,
-  ipcRenderer: { // TODO add custom event emitter
-    on: (event, cb) => window.addEventListener(event, cb),
-    removeListener: (event, cb) => window.removeEventListener(event, cb)
-  },
   BrowserWindow,
   Menu: console.error,
   remote: {

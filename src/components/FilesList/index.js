@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-const { ipcRenderer } = require('../../refactor/electron');
-
 import { connect } from 'react-redux'
 import cx from 'classnames'
 import pathModule from 'path'
@@ -64,7 +62,6 @@ class FilesList extends Component {
 
   componentDidMount() {
     this.refresh()
-    ipcRenderer.on('browser-window-focus', this.refresh)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -84,7 +81,6 @@ class FilesList extends Component {
 
   componentWillUnmount() {
     this._unmounted = true
-    ipcRenderer.removeListener('browser-window-focus', this.refresh)
   }
 
   handleDetectOldSyntax = val => this.setState({ isOldSyntaxDetected: val })

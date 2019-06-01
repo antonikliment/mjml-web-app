@@ -4,8 +4,6 @@ import { hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 
-const { ipcRenderer } = require('../refactor/electron');
-
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
 import { loadProjects, addProject, openExternalFile } from 'actions/projects'
@@ -39,23 +37,6 @@ async function boot() {
 }
 
 boot()
-
-// handle menu actions
-ipcRenderer.on('redux-command', (event, message) => {
-  if (message === 'about') {
-    store.dispatch(openModal('about'))
-  }
-  if (message === 'new-project') {
-    store.dispatch(openModal('newProject'))
-  }
-  if (message === 'open-project') {
-    store.dispatch(addProject())
-  }
-})
-
-ipcRenderer.on('openPath', (event, openPath) => {
-  store.dispatch(openExternalFile(openPath))
-})
 
 if (module.hot) {
   module.hot.accept('../components/Root.js', () => {
