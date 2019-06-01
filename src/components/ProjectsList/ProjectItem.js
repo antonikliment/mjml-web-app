@@ -62,6 +62,7 @@ class ProjectItem extends Component {
           <IconClose color="#fff" />
         </Tabbable>
         <Tabbable
+          style={{display: 'none'}}
           disabled={!isOver}
           className="ProjectItem--action-btn ProjectItem--duplicate-btn"
           onClick={onDuplicate}
