@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 
-const { shell } = require('../refactor/electron');
-
 import IconInfo from 'react-icons/md/info'
 import LogoMailjet from 'components/icons/logo-mailjet'
 
@@ -25,7 +23,7 @@ class MailjetInfos extends Component {
   handleGoToMailjet = e => {
     e.preventDefault()
     e.stopPropagation()
-    shell.openExternal('https://app.mailjet.com/signup')
+    window.open('https://app.mailjet.com/signup', '_blank')
   }
 
   render() {
@@ -130,7 +128,9 @@ class MailjetInfos extends Component {
                     <div>{'Must be a verified sender. '}</div>
                     <div
                       className="a white"
-                      onClick={() => shell.openExternal('https://app.mailjet.com/account/sender')}
+                      onClick={() =>
+                        window.open('https://app.mailjet.com/account/sender', '_blank')
+                      }
                     >
                       {'Learn more'}
                     </div>

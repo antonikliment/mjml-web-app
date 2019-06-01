@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const { shell, clipboard } = require('../../refactor/electron');
+const {  clipboard } = require('../../refactor/electron');
 
 import { connect } from 'react-redux'
 import IconErr from 'react-icons/io/android-sad'
@@ -76,7 +76,7 @@ class ErrorModal extends Component {
           </div>
           <Button
             primary
-            onClick={() => shell.openExternal('https://github.com/mjmlio/mjml-app/issues')}
+            onClick={() => window.open('https://github.com/mjmlio/mjml-app/issues', '_blank')}
           >
             <IconOpen className="mr-5" />
             {'Open the issues page'}

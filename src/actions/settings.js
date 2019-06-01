@@ -1,4 +1,4 @@
-import storage from 'refactor/electron-json-storage'
+import storage from 'refactor/storage'
 import { promisify } from 'es6-promisify'
 import defaultsDeep from 'lodash/defaultsDeep'
 import omit from 'lodash/omit'

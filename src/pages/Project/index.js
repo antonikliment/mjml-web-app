@@ -20,7 +20,7 @@ import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
 
-const { shell, clipboard } = require('../../refactor/electron');
+const { clipboard } = require('../../refactor/electron');
 
 import beautifyJS from 'js-beautify'
 
@@ -130,11 +130,7 @@ class ProjectPage extends Component {
   }
 
   handleOpenInBrowser = () => {
-    if (process.platform === 'darwin') {
-      shell.showItemInFolder(this.state.path)
-    } else {
-      shell.openItem(this.state.path)
-    }
+    console.warn("@TODO handleOpenInBrowser")
   }
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
