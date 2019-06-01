@@ -59,7 +59,7 @@ function listTemplates2(path) {
   return files.map(name => join(path, name)).map(path => {
     return {
       name: pathConverter(path),
-      isFile: isFile(path)
+      isFolder: !isFile(path)
     }
   });
 }

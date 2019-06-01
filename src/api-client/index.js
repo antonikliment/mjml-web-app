@@ -108,9 +108,9 @@ export async function getProjectFromServer(path) {
 export async function getFilesFromServer(path) {
     const pathBlock = path.split("/")
     const projectName = pathBlock.pop()
-    const res = await fetch(`http://localhost:5000/${projectName}`, {
+    const res = await fetch(`http://localhost:5000/v2/${projectName}`, {
       method: "GET"
     });
     const list = await res.json();
-    return list.map(name=>({ name, path: `/${projectName}/${name}`, isFolder: false }))
+    return list;
 }
