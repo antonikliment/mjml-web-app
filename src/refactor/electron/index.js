@@ -25,9 +25,7 @@ module.exports = {
     openExternal: (href) => window.open(href, '_blank')
   },
   clipboard: navigator.clipboard,
-  app: document,
   BrowserWindow,
-  Menu: console.error,
   remote: {
     BrowserWindow,
     dialog: {
