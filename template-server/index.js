@@ -7,6 +7,7 @@ const {
   removeProject,
   createProject,
   listProjects,
+  listTemplates2,
   listTemplates,
   removeTemplate,
   renameTemplate
@@ -48,6 +49,11 @@ app.post('/:projectName', (req, res) => {
   res.send(files);
 })
 
+app.get('/v2/:projectName', (req, res) => {
+  const { projectName } = req.params
+  const files = listTemplates2(`${__dirname}/templates/${projectName}`);
+  res.send(files);
+});
 app.get('/:projectName', (req, res) => {
   const { projectName } = req.params
   const files = listTemplates(`${__dirname}/templates/${projectName}`);

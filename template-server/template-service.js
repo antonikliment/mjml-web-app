@@ -49,6 +49,21 @@ function listTemplates(path) {
   }
   return files.map(name => join(path, name)).filter(isFile).map(pathConverter)
 }
+function listTemplates2(path) {
+  let files;
+  try {
+    files= readdirSync(path)
+  } catch(e) {
+    files = []
+  }
+  return files.map(name => join(path, name)).map(path => {
+    return {
+      name: pathConverter(path),
+      isFile: isFile(path)
+    }
+  });
+}
+
 
 function removeTemplate(projectName, templateName) {
   return unlinkSync(`${__dirname}/templates/${projectName}/${templateName}`);
@@ -69,6 +84,7 @@ module.exports = {
   renameTemplate,
   listProjects,
   listTemplates,
+  listTemplates2,
   removeTemplate,
   removeProject
 };
