@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import os from 'os'
 
 import { openProject, removeProject, renameProject, duplicateProject } from 'actions/projects'
 
@@ -14,7 +13,7 @@ import ProjectItem from './ProjectItem'
 
 import './style.scss'
 
-const HOME_DIR = os.homedir()
+const HOME_DIR = '/ '
 
 @connect(
   state => ({

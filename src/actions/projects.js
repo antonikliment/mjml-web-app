@@ -1,5 +1,4 @@
 import fs from 'refactor/fs-wrapper'
-import os from 'os'
 import path from 'path'
 // import trash from 'trash'
 
@@ -32,14 +31,14 @@ import {
 
 import mjml2html from 'helpers/mjml'
 
-const HOME_DIR = os.homedir()
+const HOME_DIR = '/'
 
 export function addProject(p) {
   return async (dispatch, getState) => {
     if (!p) {
       const state = getState()
       p = fileDialog({
-        defaultPath: state.settings.get('lastOpenedFolder') || HOME_DIR,
+        defaultPath: state.settings.get('lastOpenedFolder') || '/',
         properties: ['openDirectory', 'createDirectory'],
       })
       if (!p) {
