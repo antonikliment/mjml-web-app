@@ -30,17 +30,10 @@ module.exports = {
     openExternal: (href) => window.open(href, '_blank')
   },
   clipboard: navigator.clipboard,
-  app: console.error,
-  ipcRenderer: {
-    on: (event, cb) => {
-      console.log('ipcRenderer->on')
-      // console.warn(...args)
-      window.addEventListener(event, cb)
-    },
-    removeListener: (event, cb) => {
-      console.log('ipcRenderer->removeListener')
-      window.removeEventListener(event, cb)
-    }
+  app: document,
+  ipcRenderer: { // TODO add custom event emitter
+    on: (event, cb) => window.addEventListener(event, cb),
+    removeListener: (event, cb) => window.removeEventListener(event, cb)
   },
   BrowserWindow,
   Menu: console.error,
