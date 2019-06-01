@@ -1,19 +1,21 @@
-import storage from 'electron-json-storage'
+import storage from 'refactor/electron-json-storage'
 import { promisify } from 'es6-promisify'
 import defaultsDeep from 'lodash/defaultsDeep'
 import omit from 'lodash/omit'
 
 import { setError } from 'reducers/error'
+import { listProjects } from 'api-client'
 
-const storageGet = promisify(storage.get)
-const storageSet = promisify(storage.set)
+const storageGet = storage.get
+const storageSet = storage.set
 
 export function loadSettings() {
   return async dispatch => {
     let shouldResetDefaults = false
     let res
     try {
-      res = await storageGet('settings')
+      res = await listProjects()
+      // res = await storageGet('settings')
 
       // check for old format and reformat
       if (typeof res.projects === 'object' && !(res.projects instanceof Array)) {

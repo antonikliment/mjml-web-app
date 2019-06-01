@@ -1,23 +1,60 @@
-import fs from 'fs'
-import { ncp } from 'ncp'
+import fs from 'refactor/fs-wrapper'
+// import { ncp } from 'ncp'
 import path from 'path'
 import { promisify } from 'es6-promisify'
-import { remote } from 'electron'
-import { exec as x, execFile as xFile } from 'child_process'
+
+const { remote } = require('../refactor/electron');
+
+import {
+  createProject,
+  renameTemplate,
+  getProjectFromServer,
+  getFilesFromServer,
+  saveOnServer,
+  readFromServer,
+  deleteTemplateFromServer
+} from 'api-client';
 
 const { dialog } = remote
-
-export const fsReadDir = promisify(fs.readdir)
-export const fsRename = promisify(fs.rename)
-export const fsReadFile = promisify(fs.readFile)
-export const fsWriteFile = promisify(fs.writeFile)
+export const deleteFile = deleteTemplateFromServer;
+export const fsReadDir = getProjectFromServer;
+export const fsRename = renameTemplate
+// const fsReadFileFromDisk = promisify(fs.readFile)
+// const fsWriteFileToDisk = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
-export const fsMkdir = promisify(fs.mkdir)
+export const fsMkdir = createProject
 export const fsUnlink = promisify(fs.unlink)
-export const recursiveCopy = promisify(ncp)
+export const recursiveCopy = console.error
 
-function getFileInfoFactory(p) {
+export async function fsReadFile(...args) {
+  console.log('fsReadFile');
+  return readFromServer(...args);
+  // await fsReadFileFromDisk(...args)
+}
+export async function fsWriteFile(...args) {
+  console.log('fsWriteFile');
+  return saveOnServer(...args)
+  // await fsWriteFileToDisk(...args)
+}
+export async function readFile(path, options, cb) {
+  try {
+    const res  = await fsReadFile(path, options)
+    cb(null, res);
+  }catch(e) {
+    cb(e, null);
+  }
+}
+export async function writeFile(path, defaultMJML, cb) {
+  try {
+    const res  = await fsWriteFile(path, defaultMJML)
+    cb(null, res);
+  }catch(e) {
+    cb(e);
+  }
+}
+
+export function getFileInfoFactory(p) {
   return async name => {
     const fullPath = path.resolve(p, name)
     try {
@@ -58,11 +95,16 @@ export function sortFiles(files) {
 }
 
 export async function readDir(p) {
+  const files = await getFilesFromServer(p);
+  return files;
+  /*
   const filesList = await fsReadDir(p)
+
   const filtered = filesList.filter(f => !f.startsWith('.'))
   const getFileInfo = getFileInfoFactory(p)
   const enriched = await Promise.all(filtered.map(getFileInfo))
   return enriched
+  */
 }
 
 export function fileDialog(options) {
@@ -80,41 +122,36 @@ export function saveDialog(options) {
 }
 
 export async function isValidDir(path) {
-  try {
-    await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (e) {
-    return false
-  }
-  const stats = await fsStat(path)
-  return stats.isDirectory()
+  // try {
+  //   await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
+  // } catch (e) {
+  //   return false
+  // }
+  // const stats = await fsStat(path)
+  return true // stats.isDirectory()
 }
 
 export async function alreadyExists(location) {
-  try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      return false
-    }
-    return true
-  }
-  return true
+  // try {
+  //   await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
+  // } catch (err) {
+  //   if (err.code === 'ENOENT') {
+  //     return false
+  //   }
+  //   return true
+  // }
+  return false
 }
 
 export async function isEmptyOrDontExist(location) {
-  try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
-  } catch (err) {
-    if (err.code === 'ENOENT') {
-      return true
-    }
-    return false
-  }
   const filesList = await fsReadDir(location)
   return filesList.length === 0
 }
 
 export async function createOrEmpty(location) {
+  console.log('createOrEmpty')
+  await fsMkdir(location)
+  /*
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
   } catch (err) {
@@ -122,6 +159,7 @@ export async function createOrEmpty(location) {
       await fsMkdir(location)
     }
   }
+  */
   const filesList = await fsReadDir(location)
   if (filesList.length > 0) {
     throw new Error('Directory not empty')
@@ -147,14 +185,15 @@ export function exec(cmd, opts = {}) {
 export function execFile(cmd, args, opts = {}, stdinStream) {
   return new Promise(resolve => {
     try {
-      const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
-        resolve({
-          err,
-          stdout,
-          stderr,
-        })
-      })
-      stdinStream.pipe(child.stdin)
+      throw Error("todo")
+      // const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
+      //   resolve({
+      //     err,
+      //     stdout,
+      //     stderr,
+      //   })
+      // })
+      // stdinStream.pipe(child.stdin)
     } catch (err) {
       resolve({ err })
     }
@@ -162,11 +201,14 @@ export function execFile(cmd, args, opts = {}, stdinStream) {
 }
 
 export async function fileExists(p) {
+  console.log('fileExists')
+  return false;
+  /*
   try {
     await fsAccess(p, fs.constants.F_OK)
     return true
   } catch (err) {
     // eslint-disable-line
     return false
-  }
+  }*/
 }

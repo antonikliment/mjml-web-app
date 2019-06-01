@@ -1,4 +1,5 @@
-import { remote } from 'electron'
+const { remote } = require('../refactor/electron');
+
 import path from 'path'
 
 import { fsWriteFile, fsUnlink } from 'helpers/fs'

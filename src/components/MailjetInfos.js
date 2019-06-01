@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Collapse from 'react-collapse'
-import { shell } from 'electron'
+
+const { shell } = require('../refactor/electron');
 
 import IconInfo from 'react-icons/md/info'
 import LogoMailjet from 'components/icons/logo-mailjet'

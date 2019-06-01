@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import isObject from 'lodash/isObject'
 import { bindActionCreators } from 'redux'
-import os from 'os'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconArrowRight from 'react-icons/md/arrow-forward'
@@ -28,7 +27,7 @@ import TemplateChooser from './TemplateChooser'
 
 import './style.scss'
 
-const HOME_DIR = os.homedir()
+const HOME_DIR = `/`;
 
 const defaultState = {
   projectName: '',
@@ -167,9 +166,8 @@ class NewProjectModal extends Component {
     }
     const full = path.join(projectLocation, projectName)
     const locOK = await isEmptyOrDontExist(full)
-    const parentOK = await alreadyExists(projectLocation)
     this.setState({
-      projectLocStatus: parentOK ? (locOK ? 'valid' : 'invalid') : 'parent-invalid',
+      projectLocStatus: (locOK ? 'valid' : 'invalid'),
     })
   }, 250)
 
@@ -218,29 +216,15 @@ class NewProjectModal extends Component {
                 />
               </div>
 
-              <div className="d-f ai-b">
-                <div style={{ width: 150 }} className="fs-0">
-                  {'Location:'}
-                </div>
+              <div className="d-f ai-b" >
                 <div className="fg-1">
-                  <div className="d-f ai-s fg-1">
-                    <input
-                      className="fg-1"
-                      value={projectLocation}
-                      onChange={e => this.handleChangeProjectLocation(e.target.value)}
-                      placeholder="Location"
-                      type="text"
-                    />
-                    <Button ghost onClick={this.handleBrowse} type="button">
-                      {'Browse'}
-                    </Button>
-                  </div>
-                  {fullPath && (
-                    <div className="mt-10 t-small">
-                      {'Project will be created at: '}
-                      <b className="c-white wb-ba">{fullPath}</b>
-                    </div>
-                  )}
+                  <input
+                    className="fg-1"
+                    value={projectLocation}
+                    onChange={e => this.handleChangeProjectLocation(e.target.value)}
+                    placeholder="Location"
+                    type="hidden"
+                  />
                   {projectLocStatus === 'checking' && (
                     <div className="t-small mt-10">
                       <IconChecking className="rotating mr-5" />
@@ -262,7 +246,7 @@ class NewProjectModal extends Component {
                   {projectLocStatus === 'invalid' && (
                     <div className="t-small mt-10 c-red">
                       <IconError className="mr-5" />
-                      {'Directory exists and is not empty'}
+                      {'Project exists and is not empty'}
                     </div>
                   )}
                 </div>
@@ -298,7 +282,7 @@ class NewProjectModal extends Component {
             {step === 'template' && (
               <Button ghost onClick={this.handlePrev}>
                 <IconArrowLeft className="mr-10" />
-                {'Choose location and name'}
+                {'Change project name'}
               </Button>
             )}
             <Button transparent onClick={closeModal}>

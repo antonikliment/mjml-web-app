@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import pathModule from 'path'
-import trash from 'trash'
+
+import {
+    deleteFile,
+    readFile,
+    writeFile,
+    fileDialog,
+    saveDialog,
+    fsWriteFile
+} from 'helpers/fs';
+
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -10,8 +19,9 @@ import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
-import fs from 'fs'
-import { shell, clipboard } from 'electron'
+
+const { shell, clipboard } = require('../../refactor/electron');
+
 import beautifyJS from 'js-beautify'
 
 import defaultMJML from 'data/defaultMJML'
@@ -20,7 +30,7 @@ import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
 import { setPreview } from 'actions/preview'
 
-import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
+
 
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
@@ -73,8 +83,8 @@ class ProjectPage extends Component {
     if (!p) {
       return
     }
-
-    fs.readFile(p, { encoding: 'utf8' }, (err, res) => {
+    // TODO
+    readFile(p, { encoding: 'utf8' }, (err, res) => {
       if (err) {
         return
       }
@@ -82,8 +92,19 @@ class ProjectPage extends Component {
     })
   }
 
-  handleAddFile = fileName => {
-    fs.writeFile(fileName, defaultMJML, err => {
+  handleAddFile = async fileName => {
+    // Add req
+    // try {
+    //   await saveOnServer(fileName, defaultMJML);
+    // } catch(err) {
+    //   this.props.addAlert('Error creating file', 'error')
+    //   throw new Error(err)
+    // } finally {
+    //
+    //   this._filelist.refresh()
+    // }
+
+    writeFile(fileName, defaultMJML, err => {
       if (err) {
         this.props.addAlert('Error creating file', 'error')
         throw new Error(err)
@@ -94,9 +115,10 @@ class ProjectPage extends Component {
 
   handleRemoveFile = async fileName => {
     try {
-      if ((await trash(fileName)) === undefined) {
-        throw new Error('No file was deleted')
-      }
+      // if ((await trash(fileName)) === undefined) {
+      //   throw new Error('No file was deleted')
+      // }
+      await deleteFile(fileName);
       this.props.addAlert('File successfully removed', 'success')
     } catch (e) {
       this.props.addAlert('Could not delete file', 'error')
@@ -209,7 +231,7 @@ class ProjectPage extends Component {
                 {'Beautify'}
               </Button>,
             ]}
-            <Button transparent onClick={this.handleOpenInBrowser}>
+            <Button style={{display: 'none'}} transparent onClick={this.handleOpenInBrowser}>
               <FaFolderOpen style={{ marginRight: 5 }} />
               {'Open'}
             </Button>

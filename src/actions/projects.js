@@ -1,11 +1,12 @@
-import fs from 'fs'
-import os from 'os'
+import fs from 'refactor/fs-wrapper'
 import path from 'path'
-import trash from 'trash'
+// import trash from 'trash'
+
+import { deleteProjectFromServer } from 'api-client';
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
-import takeScreenshot from 'helpers/takeScreenshot'
+import { takeScreenshot } from 'helpers/takeScreenshot'
 
 import { addAlert } from 'reducers/alerts'
 import { openExternalFileOverlay, closeExternalFileOverlay } from 'reducers/externalFileOverlay'
@@ -22,7 +23,6 @@ import {
   recursiveCopy,
   fileDialog,
   fsReadFile,
-  fsAccess,
   fsRename,
   fsWriteFile,
   fileExists,
@@ -31,14 +31,14 @@ import {
 
 import mjml2html from 'helpers/mjml'
 
-const HOME_DIR = os.homedir()
+const HOME_DIR = '/'
 
 export function addProject(p) {
   return async (dispatch, getState) => {
     if (!p) {
       const state = getState()
       p = fileDialog({
-        defaultPath: state.settings.get('lastOpenedFolder') || HOME_DIR,
+        defaultPath: state.settings.get('lastOpenedFolder') || '/',
         properties: ['openDirectory', 'createDirectory'],
       })
       if (!p) {
@@ -46,7 +46,6 @@ export function addProject(p) {
       }
     }
 
-    await fsAccess(p, fs.constants.R_OK | fs.constants.W_OK)
 
     dispatch(saveLastOpenedFolder(p))
     dispatch(openProject(p))
@@ -54,11 +53,12 @@ export function addProject(p) {
 }
 
 export function removeProject(p, shouldDeleteFolder = false) {
-  return dispatch => {
+  return async (dispatch) => {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
     if (shouldDeleteFolder) {
-      trash(p)
+      await deleteProjectFromServer(p)
+      // trash(p)
     }
   }
 }
@@ -105,6 +105,7 @@ export function loadProjects() {
     const { settings } = state
 
     const projectsPaths = settings.get('projects')
+    console.log(projectsPaths);
 
     // eventually get the custom mjml path set in settings
     const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'

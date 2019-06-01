@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'refactor/fs-wrapper'
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import IconChecking from 'react-icons/md/autorenew'
 import IconError from 'react-icons/md/error'
 import IconWarning from 'react-icons/md/warning'
 
-import { exec, fileDialog, fsAccess } from 'helpers/fs'
+import { exec, fileDialog } from 'helpers/fs'
 
 import { updateSettings } from 'actions/settings'
 
@@ -16,19 +16,7 @@ import Button from 'components/Button'
 import RadioGroup from 'components/RadioGroup'
 import Radio from 'components/RadioGroup/Radio'
 
-export async function getMJMLVersion(location) {
-  try {
-    await fsAccess(location, fs.constants.R_OK | fs.constants.R_OK | fs.constants.X_OK)
-    const { err, stdout } = await exec(`${location} --version`)
-    if (err) {
-      return null
-    }
-    const version = stdout.trim()
-    return version
-  } catch (e) {
-    return null
-  }
-}
+import { getMJMLVersion } from 'api-client'
 
 @connect(
   state => {
@@ -147,14 +135,15 @@ class MJMLEngine extends Component {
 
     return (
       <RadioGroup value={mjmlEngine} onChange={this.handleChangeEngine}>
-        <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__})`}</Radio>
-        <Radio value="manual">
+        <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__}) @TODO`}</Radio>
+        <Radio value="manual" disabled>
           <div className="flow-v-10">
-            <div>{'Use a custom MJML engine (slower and disables validation)'}</div>
+            <div>{'Use a custom MJML engine (slower and disables validation) @TODO'}</div>
             {mjmlEngine === 'manual' && (
               <div className="flow-v-10">
                 <div className="d-f ai-s fg-1">
                   <input
+                    disabled
                     autoFocus
                     className="fg-1"
                     value={mjmlPath}
