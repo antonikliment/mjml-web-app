@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
 const path = require('path');
-// const pkg = require('./package.json');
+const pkg = require('./package.json');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
@@ -58,6 +59,10 @@ module.exports = {
     ],
   },
   plugins: [
-    HtmlWebpackPluginConfig
+    HtmlWebpackPluginConfig,
+    new webpack.DefinePlugin({
+      __MJML_APP_VERSION__: JSON.stringify(pkg.version),
+      __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
+    }),
   ]
 }
