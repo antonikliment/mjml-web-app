@@ -1,8 +1,9 @@
-const { remote } = require('../refactor/electron');
 
 import path from 'path'
 
 import { fsWriteFile, fsUnlink } from 'helpers/fs'
+
+const { remote } = require('../refactor/electron');
 
 const TMP_FILE = 'tpm-mjml-preview.html'
 

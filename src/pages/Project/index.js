@@ -21,7 +21,6 @@ import {
   MdAutorenew as IconBeautify
 } from 'react-icons/md'
 
-const { clipboard } = require('../../refactor/electron');
 
 import beautifyJS from 'js-beautify'
 
@@ -37,12 +36,13 @@ import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FilesList from 'components/FilesList'
 
+import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
 import BackButton from './BackButton'
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
-import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
+const { clipboard } = require('../../refactor/electron');
 
 @connect(
   state => ({
@@ -188,7 +188,9 @@ class ProjectPage extends Component {
   }
 
   openSettingsModal = () => this.props.openModal('settings')
+
   openSendModal = () => this.props.openModal('send')
+
   openAddFileModal = () => this.props.openModal('addFile')
 
   getHTMLOutput() {

@@ -12,7 +12,7 @@
     "build:site": "NODE_ENV=production webpack --config webpack/site.js && cp -r site/assets dist",
     "dist": "webpack",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
-    "lint": "eslint src webpack",
+    "lint": "eslint src",
     "prettier": "prettier --write \"{src,webpack}/**/*.js\"",
     "prettier:check": "prettier --list-different \"{src,webpack}/**/*.js\""
   },

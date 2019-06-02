@@ -24,6 +24,7 @@ class GlobalSearch extends PureComponent {
   debouncedSearch = debounce(text => this.props.searchText(text), 100)
 
   handleFocus = () => this.setState({ isFocused: true })
+
   handleBlur = () => this.setState({ isFocused: false })
 
   handleChange = e => {

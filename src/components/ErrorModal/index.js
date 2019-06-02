@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-const {  clipboard } = require('../../refactor/electron');
 
 import { connect } from 'react-redux'
 import { IconErr } from 'react-icons/io'
@@ -14,6 +13,8 @@ import { addAlert } from 'reducers/alerts'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
+
+const {  clipboard } = require('../../refactor/electron');
 
 import './style.scss'
 
