@@ -7,7 +7,7 @@ import SplitPane from 'react-split-pane'
 import { FaFolder } from 'react-icons/fa'
 import {
   MdClose as IconClose,
-  MdModeEdit as IconEdit 
+  MdModeEdit as IconEdit
 } from 'react-icons/md'
 
 import { openModal } from 'reducers/modals'
@@ -46,7 +46,9 @@ function renameFile(path, oldName, newName, files) {
     updateSettings,
   },
   null,
-  { withRef: true },
+  {
+    forwardRef: true 
+  },
 )
 class FilesList extends Component {
   state = {

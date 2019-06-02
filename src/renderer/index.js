@@ -1,12 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { hashHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 
+import { createBrowserHistory } from 'history';
+
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
-import { loadProjects } from 'actions/projects' // , addProject, openExternalFile 
+import { loadProjects } from 'actions/projects' // , addProject, openExternalFile
 
 import Root from 'components/Root'
 
@@ -15,8 +17,9 @@ import { openModal } from 'reducers/modals'
 import 'styles/global.scss'
 import 'styles/utils.scss'
 
-const store = configureStore()
-const history = syncHistoryWithStore(hashHistory, store)
+const browserHistory = createBrowserHistory();
+const store = configureStore(undefined, browserHistory)
+const history = syncHistoryWithStore(browserHistory, store)
 const { dispatch } = store
 const rootNode = document.getElementById('app')
 

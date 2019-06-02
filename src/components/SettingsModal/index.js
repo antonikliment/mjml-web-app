@@ -8,7 +8,7 @@ import {
   MdClose as IconClose,
   MdSettingsApplications as IconMJMLEngine,
   MdFormatAlignLeft as IconEditor,
-  MdImportandDevices as IconPreview
+  MdImportantDevices as IconPreview
 } from 'react-icons/md'
 
 import { isModalOpened, closeModal } from 'reducers/modals'

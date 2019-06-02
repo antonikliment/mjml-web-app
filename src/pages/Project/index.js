@@ -15,7 +15,7 @@ import { FaCog,FaFolderOpen } from 'react-icons/fa'
 import {
   MdContentCopy as IconCopy,
   MdCode as IconCode,
-  MdCameraalt as IconCamera,
+  MdCameraAlt as IconCamera,
   MdEmail as IconEmail,
   MdNoteAdd as IconAdd,
   MdAutorenew as IconBeautify

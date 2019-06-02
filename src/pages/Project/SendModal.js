@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import get from 'lodash/get'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import { Creatable as Select } from 'react-select'
+import Select from 'react-select'
 import uniq from 'lodash/uniq'
 import uniqBy from 'lodash/uniqBy'
 

@@ -38,6 +38,7 @@
     "react-mortal": "^3.3.0",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
     "react-select": "^3.0.3",
     "react-split-pane": "^2.0.2",

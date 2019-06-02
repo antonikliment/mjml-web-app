@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route } from 'react-router'
 
 import Application from 'components/Application'
 
@@ -10,10 +10,8 @@ import ProjectPage from 'pages/Project'
 export default ({ store, history }) => (
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={Application}>
-        <IndexRoute component={HomePage} />
-        <Route path="/project" component={ProjectPage} />
-      </Route>
+      <Route path="/" exact component={HomePage} />
+      <Route path="/project" component={ProjectPage} />
     </Router>
   </Provider>
 )

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 
 import { connect } from 'react-redux'
-import { IconErr } from 'react-icons/io'
+import { IoIosSad as IconErr } from 'react-icons/io'
 import {
   MdContentCopy as IconCopy,
   MdOpenInNew as IconOpen
