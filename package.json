@@ -6,11 +6,11 @@
   "description": "The webapp for MJML",
   "repository": "https://github.com/mjmlio/mjml-app",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack/web.js",
+    "dev": "webpack-dev-server",
     "release": "build",
     "site": "webpack-dev-server --config webpack/site.js --content-base site",
     "build:site": "NODE_ENV=production webpack --config webpack/site.js && cp -r site/assets dist",
-    "dist": "webpack --config webpack/web.js",
+    "dist": "webpack",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "eslint src webpack",
     "prettier": "prettier --write \"{src,webpack}/**/*.js\"",
@@ -81,14 +81,16 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "html-webpack-plugin": "^4.0.0-beta.5",
+    "html-webpack-plugin": "4.0.0-beta.5",
     "node-sass": "^4.12.0",
     "prettier": "^1.17.1",
     "redux-logger": "^4.0.0",
     "resolve-url-loader": "^3.1.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.32.2"
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
   },
   "authors": [
     {
