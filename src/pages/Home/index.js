@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import {
   MdCreateNewFolder as IconCreate,
-  MdFileDownload as IconOpen 
+  MdFileDownload as IconOpen
 } from 'react-icons/md'
 import { FaCog } from 'react-icons/fa'
 import { connect } from 'react-redux'
@@ -18,9 +18,11 @@ import GlobalSearch from 'components/GlobalSearch'
 import './style.scss'
 
 @connect(
-  state => ({
-    projects: state.settings.get('projects'),
-  }),
+  state => {
+    return {
+      projects: state.settings ? state.settings.get('projects') : [],
+    }
+  },
   {
     addProject,
     openModal,

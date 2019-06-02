@@ -58,7 +58,7 @@ const { clipboard } = require('../../refactor/electron');
 )
 class ProjectPage extends Component {
   state = {
-    path: this.props.location.query.path,
+    path: this.props.location.pathname,
     activeFile: null,
   }
 
@@ -76,7 +76,7 @@ class ProjectPage extends Component {
 
   handleClickImport = () => {
     const p = fileDialog({
-      defaultPath: this.props.location.query.path,
+      defaultPath: this.props.location.pathname,
       properties: ['openFile'],
       filters: [{ name: 'All Files', extensions: ['mjml'] }],
     })
@@ -206,10 +206,10 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { preview } = this.props
+    const { preview, location } = this.props
     const { path, activeFile } = this.state
-
-    const rootPath = this.props.location.query.path
+    console.log(location)
+    const rootPath = location.pathname
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
 

@@ -6,7 +6,7 @@
   "description": "The webapp for MJML",
   "repository": "https://github.com/mjmlio/mjml-app",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --development",
     "release": "build",
     "site": "webpack-dev-server --config webpack/site.js --content-base site",
     "build:site": "NODE_ENV=production webpack --config webpack/site.js && cp -r site/assets dist",

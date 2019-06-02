@@ -17,7 +17,7 @@ const HOME_DIR = '/ '
 
 @connect(
   state => ({
-    projects: state.projects,
+    projects: state.projects || [],
     selectedProjects: state.selectedProjects,
     search: state.search,
   }),

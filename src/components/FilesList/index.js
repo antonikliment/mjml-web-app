@@ -47,7 +47,7 @@ function renameFile(path, oldName, newName, files) {
   },
   null,
   {
-    forwardRef: true 
+    forwardRef: true
   },
 )
 class FilesList extends Component {
