@@ -26,7 +26,7 @@ const rootNode = document.getElementById('app')
 function r(Comp) {
   render(
     <AppContainer>
-      <Comp store={store} history={history} />
+      <Comp store={store} history={history} location={history.location} />
     </AppContainer>,
     rootNode,
   )
