@@ -11,14 +11,15 @@ import {
 } from 'helpers/fs';
 
 import { connect } from 'react-redux'
-import FaCog from 'react-icons/fa/cog'
-import FaFolderOpen from 'react-icons/fa/arrow-up'
-import IconCopy from 'react-icons/md/content-copy'
-import IconCode from 'react-icons/md/code'
-import IconCamera from 'react-icons/md/camera-alt'
-import IconEmail from 'react-icons/md/email'
-import IconAdd from 'react-icons/md/note-add'
-import IconBeautify from 'react-icons/md/autorenew'
+import { FaCog,FaFolderOpen } from 'react-icons/fa'
+import {
+  MdContentCopy as IconCopy,
+  MdCode as IconCode,
+  MdCameraalt as IconCamera,
+  MdEmail as IconEmail,
+  MdNoteAdd as IconAdd,
+  MdAutorenew as IconBeautify
+} from 'react-icons/md'
 
 const { clipboard } = require('../../refactor/electron');
 
