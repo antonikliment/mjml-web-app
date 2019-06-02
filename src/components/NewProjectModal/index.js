@@ -11,7 +11,7 @@ import {
   MdCheckCircle as IconCheck,
   MdAutorenew as IconChecking,
   MdError as IconError
-} from 'react-icons/md/arrow-forward'
+} from 'react-icons/md'
 
 import * as templates from 'templates'
 

@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 const {  clipboard } = require('../../refactor/electron');
 
 import { connect } from 'react-redux'
-import IconErr from 'react-icons/io/android-sad'
-import IconCopy from 'react-icons/md/content-copy'
-import IconOpen from 'react-icons/md/open-in-new'
+import { IconErr } from 'react-icons/io'
+import {
+  MdContentCopy as IconCopy,
+  MdOpenInNew as IconOpen
+} from 'react-icons/md'
 
 import { setError } from 'reducers/error'
 import { addAlert } from 'reducers/alerts'
