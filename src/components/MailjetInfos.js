@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 
-import IconInfo from 'react-icons/md/info'
+import { IconInfo } from 'react-icons/md'
 import LogoMailjet from 'components/icons/logo-mailjet'
 
 class MailjetInfos extends Component {
