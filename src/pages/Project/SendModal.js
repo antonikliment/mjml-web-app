@@ -6,7 +6,7 @@ import { Creatable as Select } from 'react-select'
 import uniq from 'lodash/uniq'
 import uniqBy from 'lodash/uniqBy'
 
-import { MdAdd  as IconAdd } from 'react-icons/md'
+import { MdAdd as IconAdd } from 'react-icons/md'
 
 import sendEmail from 'helpers/sendEmail'
 
@@ -119,10 +119,11 @@ class SendModal extends Component {
   }
 
   handleRemoveLastEmail = email => {
+    const { emails, TargetEmails } = this.state
     this.props.removeFromLastUsedEmails(email)
     this.setState({
-      emails: this.state.emails.filter(e => e.value !== email),
-      TargetEmails: this.state.TargetEmails.filter(e => e !== email),
+      emails: emails.filter(e => e.value !== email),
+      TargetEmails: TargetEmails.filter(e => e !== email),
     })
   }
 

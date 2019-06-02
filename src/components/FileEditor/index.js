@@ -93,46 +93,58 @@ class FileEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.mjmlEngine !== nextProps.mjmlEngine) {
+    const { mjmlEngine, minify } = this.props
+    if (mjmlEngine !== nextProps.mjmlEngine) {
       this.handleChange()
     }
-    if (this.props.minify !== nextProps.minify) {
+    if (minify !== nextProps.minify) {
       this.handleChange()
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.fileName !== this.props.fileName) {
+    const {
+      lightTheme,
+      useTab,
+      tabSize,
+      indentSize,
+      fileName,
+      wrapLines,
+      highlightTag,
+      autoFold,
+      foldLevel
+    } = this.props
+    if (prevProps.fileName !== fileName) {
       // backup history
       this._historyCache[prevProps.fileName] = this._codeMirror.getHistory()
       this.loadContent()
     }
-    if (prevProps.wrapLines !== this.props.wrapLines) {
-      this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
+    if (prevProps.wrapLines !== wrapLines) {
+      this._codeMirror.setOption('lineWrapping', wrapLines)
     }
-    if (prevProps.highlightTag !== this.props.highlightTag) {
+    if (prevProps.highlightTag !== highlightTag) {
       this._codeMirror.setOption(
         'matchTags',
-        this.props.highlightTag ? { bothTags: true } : undefined,
+        highlightTag ? { bothTags: true } : undefined,
       )
     }
     if (
-      (!prevProps.autoFold && this.props.autoFold) ||
-      (this.props.autoFold && this.props.foldLevel !== prevProps.foldLevel)
+      (!prevProps.autoFold && autoFold) ||
+      (autoFold && foldLevel !== prevProps.foldLevel)
     ) {
-      foldByLevel(this._codeMirror, this.props.foldLevel)
+      foldByLevel(this._codeMirror, foldLevel)
     }
-    if (prevProps.lightTheme !== this.props.lightTheme) {
-      this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
+    if (prevProps.lightTheme !== lightTheme) {
+      this._codeMirror.setOption('theme', lightTheme ? 'neo' : 'one-dark')
     }
-    if (prevProps.useTab !== this.props.useTab) {
-      this._codeMirror.setOption('indentWithTabs', this.props.useTab)
+    if (prevProps.useTab !== useTab) {
+      this._codeMirror.setOption('indentWithTabs', useTab)
     }
-    if (prevProps.tabSize !== this.props.tabSize) {
-      this._codeMirror.setOption('tabSize', this.props.tabSize)
+    if (prevProps.tabSize !== tabSize) {
+      this._codeMirror.setOption('tabSize', tabSize)
     }
-    if (prevProps.indentSize !== this.props.indentSize) {
-      this._codeMirror.setOption('indentUnit', this.props.indentSize)
+    if (prevProps.indentSize !== indentSize) {
+      this._codeMirror.setOption('indentUnit', indentSize)
     }
   }
 
