@@ -15,7 +15,7 @@ import {
 
 import * as templates from 'templates'
 
-import { fileDialog, isEmptyOrDontExist, alreadyExists } from 'helpers/fs'
+import { fileDialog, isEmptyOrDontExist } from 'helpers/fs'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
@@ -186,7 +186,7 @@ class NewProjectModal extends Component {
       isCreating,
     } = this.state
 
-    const fullPath = projectName && projectLocation ? path.join(projectLocation, projectName) : null
+    // const fullPath = projectName && projectLocation ? path.join(projectLocation, projectName) : null
 
     return (
       <Modal

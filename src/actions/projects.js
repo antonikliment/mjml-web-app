@@ -1,6 +1,4 @@
-import fs from 'refactor/fs-wrapper'
 import path from 'path'
-// import trash from 'trash'
 
 import { deleteProjectFromServer } from 'api-client';
 import { replace } from 'react-router-redux'

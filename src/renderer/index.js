@@ -6,7 +6,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
-import { loadProjects, addProject, openExternalFile } from 'actions/projects'
+import { loadProjects } from 'actions/projects' // , addProject, openExternalFile 
 
 import Root from 'components/Root'
 

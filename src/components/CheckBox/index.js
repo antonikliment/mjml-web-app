@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 import {
-  MdCheckBoxOutlineBlank as IconUnchecked, 
-  MdCheckCircle as IconCheck
+  MdCheckBoxOutlineBlank as IconUnchecked,
+  MdCheckCircle as IconChecked
 } from 'react-icons/md'
 
 import './style.scss'

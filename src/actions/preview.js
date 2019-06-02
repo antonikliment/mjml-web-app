@@ -40,11 +40,10 @@ export function setPreview(fileName, content = '') {
         if (!content) {
           content = await fsReadFile(fileName, { encoding: 'utf8' })
         }
-        const renderOpts = {
+        // eslint-disable-next-line 
+        const { html, errors } = await mjml2html(content, fileName, mjmlPath, {
           minify: settings.getIn(['mjml', 'minify']),
-        }
-
-        const { html, errors } = await mjml2html(content, fileName, mjmlPath, renderOpts)
+        })
         dispatch(setPrev({ type: 'html', content: html, errors }))
         // update the preview in project
         if (bName === 'index.mjml') {
