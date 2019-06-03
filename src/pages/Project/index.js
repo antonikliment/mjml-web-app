@@ -207,8 +207,9 @@ class ProjectPage extends Component {
 
   render() {
     const { preview, location } = this.props
-    const { path, activeFile } = this.state
-    console.log(location)
+    const { activeFile } = this.state
+    const { match: { params } } = this.props;
+    const { projectName: path } = params
     const rootPath = location.pathname
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
