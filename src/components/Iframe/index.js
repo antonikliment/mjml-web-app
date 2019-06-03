@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const { shell } = require('../../refactor/electron');
-
 class Iframe extends Component {
   static propTypes = {
     scrolling: PropTypes.bool,
@@ -46,7 +44,7 @@ class Iframe extends Component {
             e.preventDefault()
             const href = link.getAttribute('href')
             if (href) {
-              shell.openExternal(href)
+              window.open(href, '_blank')
             }
           })
         })

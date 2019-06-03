@@ -1,9 +1,7 @@
-import fs from 'refactor/fs-wrapper'
 import path from 'path'
-// import trash from 'trash'
 
 import { deleteProjectFromServer } from 'api-client';
-import { replace } from 'react-router-redux'
+import { push } from 'connected-react-router'
 import kebabCase from 'lodash/kebabCase'
 
 import { takeScreenshot } from 'helpers/takeScreenshot'
@@ -65,7 +63,8 @@ export function removeProject(p, shouldDeleteFolder = false) {
 
 export function openProject(projectPath) {
   return dispatch => {
-    dispatch(replace(`/project?path=${projectPath}`))
+    console.log(`open called /project?path=${projectPath}`)
+    dispatch(push(`/project/${projectPath}`))
     dispatch(loadIfNeeded(projectPath))
   }
 }

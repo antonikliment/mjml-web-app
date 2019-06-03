@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 import debounce from 'lodash/debounce'
-import IconSearch from 'react-icons/lib/md/search'
+import { MdSearch as IconSearch } from 'react-icons/md'
 
 import { searchText } from 'reducers/search'
 
@@ -24,6 +24,7 @@ class GlobalSearch extends PureComponent {
   debouncedSearch = debounce(text => this.props.searchText(text), 100)
 
   handleFocus = () => this.setState({ isFocused: true })
+
   handleBlur = () => this.setState({ isFocused: false })
 
   handleChange = e => {

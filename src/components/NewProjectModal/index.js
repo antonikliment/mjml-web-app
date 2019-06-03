@@ -4,15 +4,18 @@ import isObject from 'lodash/isObject'
 import { bindActionCreators } from 'redux'
 import path from 'path'
 import { connect } from 'react-redux'
-import IconArrowRight from 'react-icons/md/arrow-forward'
-import IconArrowLeft from 'react-icons/md/arrow-back'
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
+
+import {
+  MdArrowForward as IconArrowRight,
+  MdArrowBack as IconArrowLeft,
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError
+} from 'react-icons/md'
 
 import * as templates from 'templates'
 
-import { fileDialog, isEmptyOrDontExist, alreadyExists } from 'helpers/fs'
+import { fileDialog, isEmptyOrDontExist } from 'helpers/fs'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
@@ -183,7 +186,7 @@ class NewProjectModal extends Component {
       isCreating,
     } = this.state
 
-    const fullPath = projectName && projectLocation ? path.join(projectLocation, projectName) : null
+    // const fullPath = projectName && projectLocation ? path.join(projectLocation, projectName) : null
 
     return (
       <Modal

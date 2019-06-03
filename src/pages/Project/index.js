@@ -11,16 +11,16 @@ import {
 } from 'helpers/fs';
 
 import { connect } from 'react-redux'
-import FaCog from 'react-icons/fa/cog'
-import FaFolderOpen from 'react-icons/fa/arrow-up'
-import IconCopy from 'react-icons/md/content-copy'
-import IconCode from 'react-icons/md/code'
-import IconCamera from 'react-icons/md/camera-alt'
-import IconEmail from 'react-icons/md/email'
-import IconAdd from 'react-icons/md/note-add'
-import IconBeautify from 'react-icons/md/autorenew'
+import { FaCog,FaFolderOpen } from 'react-icons/fa'
+import {
+  MdContentCopy as IconCopy,
+  MdCode as IconCode,
+  MdCameraAlt as IconCamera,
+  MdEmail as IconEmail,
+  MdNoteAdd as IconAdd,
+  MdAutorenew as IconBeautify
+} from 'react-icons/md'
 
-const { shell, clipboard } = require('../../refactor/electron');
 
 import beautifyJS from 'js-beautify'
 
@@ -36,12 +36,13 @@ import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FilesList from 'components/FilesList'
 
+import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
 import BackButton from './BackButton'
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
-import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
+const { clipboard } = require('../../refactor/electron');
 
 @connect(
   state => ({
@@ -57,7 +58,7 @@ import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
 )
 class ProjectPage extends Component {
   state = {
-    path: this.props.location.query.path,
+    path: this.props.location.pathname,
     activeFile: null,
   }
 
@@ -75,7 +76,7 @@ class ProjectPage extends Component {
 
   handleClickImport = () => {
     const p = fileDialog({
-      defaultPath: this.props.location.query.path,
+      defaultPath: this.props.location.pathname,
       properties: ['openFile'],
       filters: [{ name: 'All Files', extensions: ['mjml'] }],
     })
@@ -130,11 +131,7 @@ class ProjectPage extends Component {
   }
 
   handleOpenInBrowser = () => {
-    if (process.platform === 'darwin') {
-      shell.showItemInFolder(this.state.path)
-    } else {
-      shell.openItem(this.state.path)
-    }
+    console.warn("@TODO handleOpenInBrowser")
   }
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
@@ -191,7 +188,9 @@ class ProjectPage extends Component {
   }
 
   openSettingsModal = () => this.props.openModal('settings')
+
   openSendModal = () => this.props.openModal('send')
+
   openAddFileModal = () => this.props.openModal('addFile')
 
   getHTMLOutput() {
@@ -207,10 +206,11 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { preview } = this.props
-    const { path, activeFile } = this.state
-
-    const rootPath = this.props.location.query.path
+    const { preview, location } = this.props
+    const { activeFile } = this.state
+    const { match: { params } } = this.props;
+    const { projectName: path } = params
+    const rootPath = location.pathname
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
 

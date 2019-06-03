@@ -1,20 +1,32 @@
-const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
 const path = require('path');
-const pkg = require('../package.json');
+const pkg = require('./package.json');
+
+const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
+  template: './src/index.html',
+  filename: 'index.html',
+  inject: 'body'
+});
+
+
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: [
     '@babel/polyfill', './src/renderer/index.js'
   ],
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'main.js'
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
     // options for resolving module requests
     // (does not apply to resolving to loaders)
     modules: [
-      path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, './node_modules'),
       'node_modules'
     ]
   },
@@ -47,12 +59,10 @@ module.exports = {
     ],
   },
   plugins: [
+    HtmlWebpackPluginConfig,
     new webpack.DefinePlugin({
       __MJML_APP_VERSION__: JSON.stringify(pkg.version),
       __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
     }),
-    new HtmlWebpackPlugin({
-      template: './src/template.html',
-    }),
-  ],
+  ]
 }

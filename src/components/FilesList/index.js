@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
-import FaFolder from 'react-icons/fa/folder'
-import IconClose from 'react-icons/md/close'
-import IconEdit from 'react-icons/md/mode-edit'
+import { FaFolder } from 'react-icons/fa'
+import {
+  MdClose as IconClose,
+  MdModeEdit as IconEdit
+} from 'react-icons/md'
 
 import { openModal } from 'reducers/modals'
 
@@ -44,7 +46,9 @@ function renameFile(path, oldName, newName, files) {
     updateSettings,
   },
   null,
-  { withRef: true },
+  {
+    forwardRef: true
+  },
 )
 class FilesList extends Component {
   state = {
@@ -223,6 +227,7 @@ class FilesList extends Component {
   }
 
   startDrag = () => this.setState({ isDragging: true })
+
   stopDrag = () => {
     this.setState({ isDragging: false })
     if (!this._editor) {

@@ -5,7 +5,7 @@ import { openProject, removeProject, renameProject, duplicateProject } from 'act
 
 import { toggleSelectProject } from 'reducers/selectedProjects'
 
-import CheckBox from 'components/CheckBox'
+// import CheckBox from 'components/CheckBox'
 import ConfirmModal from 'components/Modal/ConfirmModal'
 
 import RenameModal from './RenameModal'
@@ -17,7 +17,7 @@ const HOME_DIR = '/ '
 
 @connect(
   state => ({
-    projects: state.projects,
+    projects: state.projects || [],
     selectedProjects: state.selectedProjects,
     search: state.search,
   }),
@@ -103,9 +103,9 @@ class ProjectsList extends Component {
       search,
     } = this.props
 
-    const { isDeleteModalOpened, isRenameModalOpened, shouldDeleteFolder, activePath } = this.state
+    const { isDeleteModalOpened, isRenameModalOpened,  activePath } = this.state
 
-    const isHome = activePath === HOME_DIR
+    // const isHome = activePath === HOME_DIR
 
     const { text, results } = search
     const filteredProjects = text

@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 
-const { shell, clipboard } = require('../../refactor/electron');
 
 import { connect } from 'react-redux'
-import IconErr from 'react-icons/io/android-sad'
-import IconCopy from 'react-icons/md/content-copy'
-import IconOpen from 'react-icons/md/open-in-new'
+import { IoIosSad as IconErr } from 'react-icons/io'
+import {
+  MdContentCopy as IconCopy,
+  MdOpenInNew as IconOpen
+} from 'react-icons/md'
 
 import { setError } from 'reducers/error'
 import { addAlert } from 'reducers/alerts'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
+
+const {  clipboard } = require('../../refactor/electron');
 
 import './style.scss'
 
@@ -76,7 +79,7 @@ class ErrorModal extends Component {
           </div>
           <Button
             primary
-            onClick={() => shell.openExternal('https://github.com/mjmlio/mjml-app/issues')}
+            onClick={() => window.open('https://github.com/mjmlio/mjml-app/issues', '_blank')}
           >
             <IconOpen className="mr-5" />
             {'Open the issues page'}

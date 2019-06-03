@@ -1,12 +1,11 @@
-import storage from 'refactor/electron-json-storage'
-import { promisify } from 'es6-promisify'
+import storage from 'refactor/storage'
 import defaultsDeep from 'lodash/defaultsDeep'
 import omit from 'lodash/omit'
 
 import { setError } from 'reducers/error'
 import { listProjects } from 'api-client'
 
-const storageGet = storage.get
+// const storageGet = storage.get
 const storageSet = storage.set
 
 export function loadSettings() {
