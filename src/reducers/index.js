@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { routerReducer as routing } from 'react-router-redux'
+import { connectRouter } from 'connected-react-router'
 
 import settings from './settings'
 import preview from './preview'
@@ -13,8 +13,8 @@ import externalFileOverlay from './externalFileOverlay'
 import search from './search'
 import snippets from './snippets'
 
-const rootReducer = combineReducers({
-  routing,
+const rootReducer = (history) => combineReducers({
+  router: connectRouter(history),
   settings,
   preview,
   modals,

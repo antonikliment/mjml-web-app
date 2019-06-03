@@ -1,17 +1,17 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware } from 'connected-react-router'
 
 import rootReducer from 'reducers'
 import catchErrorsMiddleware from 'middlewares/catch-errors'
 
 
 
-export default function configureStore(initialState, browserHistory) {
-  const router = routerMiddleware(browserHistory)
+export default function configureStore(initialState, history) {
+  const router = routerMiddleware(history)
 
   const middlewares = [catchErrorsMiddleware, thunk, router]
 
   const enhancer = applyMiddleware(...middlewares)
-  return createStore(rootReducer, initialState, enhancer) // eslint-disable-line
+  return createStore(rootReducer(history), initialState, enhancer) // eslint-disable-line
 }

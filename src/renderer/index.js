@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 // import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 
 import { createBrowserHistory } from 'history';
@@ -19,14 +18,13 @@ import 'styles/utils.scss'
 
 const browserHistory = createBrowserHistory();
 const store = configureStore(undefined, browserHistory)
-const history = syncHistoryWithStore(browserHistory, store)
 const { dispatch } = store
 const rootNode = document.getElementById('app')
 
 function r(Comp) {
   render(
     <AppContainer>
-      <Comp store={store} history={history} location={history.location} />
+      <Comp store={store} history={browserHistory} location={browserHistory.location} />
     </AppContainer>,
     rootNode,
   )
