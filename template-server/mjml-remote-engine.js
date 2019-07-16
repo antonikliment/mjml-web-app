@@ -4,17 +4,18 @@ const BASE_PATH = `${__dirname }/templates/`
 
 
 module.exports = function(mjmlContent, remoteFolderPath) {
+  if (mjmlContent.length < 3) {
+    return {}
+  }
   const options = {
     filePath: BASE_PATH + remoteFolderPath
   }
   try{
     return mjml2html(mjmlContent, options)
   }catch(e){
-    console.warn(e)
-    return "OPS"
+    return {
+      html: ['<h1>Failed</h1>'],
+      errors: [e]
+    }
   }
 }
-// export function migrateToMJML4(content) {
-//   console.error("Not implemented")
-//   //return migrate(content)
-// }

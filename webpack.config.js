@@ -12,10 +12,16 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 
 
 module.exports = {
+  devServer: {
+   historyApiFallback: true
+  },
   devtool: 'inline-source-map',
   entry: [
     '@babel/polyfill', './src/renderer/index.js'
   ],
+  optimization: {
+    minimize: false
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'main.js'

@@ -56,12 +56,12 @@ const { clipboard } = require('../../refactor/electron');
     setPreview,
   },
 )
+
 class ProjectPage extends Component {
   state = {
-    path: this.props.location.pathname,
+    path: this.props.match.params.projectName,
     activeFile: null,
   }
-
   componentDidMount() {
     this._page.focus()
   }
@@ -72,7 +72,11 @@ class ProjectPage extends Component {
 
   handleBeautify = () => this._editor.beautify()
 
-  handlePathChange = path => this.setState({ path, activeFile: null })
+  handlePathChange = path => {
+      console.log("handlePathChange")
+      return this.setState({ path, activeFile: null })
+  }
+
 
   handleClickImport = () => {
     const p = fileDialog({
@@ -207,9 +211,8 @@ class ProjectPage extends Component {
 
   render() {
     const { preview, location } = this.props
-    const { activeFile } = this.state
-    const { match: { params } } = this.props;
-    const { projectName: path } = params
+    const { activeFile, path } = this.state
+
     const rootPath = location.pathname
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')

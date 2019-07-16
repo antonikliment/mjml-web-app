@@ -54,6 +54,7 @@ export async function mjmlRemote(mjmlContent, remoteFolderPath) {
        remoteFolderPath
      })
    });
+   console.log(res.body);
    return res.json();
 }
 
@@ -71,6 +72,7 @@ export async function listProjects() {
   const res = await fetch(`http://localhost:5000`, {
      method: "GET"
   });
+  console.log(res.body);
   return res.json();
 }
 export async function deleteTemplateFromServer(path) {
@@ -103,6 +105,7 @@ export async function getProjectFromServer(path) {
   const res = await fetch(`http://localhost:5000/${projectName}`, {
     method: "GET"
   });
+  console.log(res.body);
   return res.json();
 }
 export async function getFilesFromServer(path) {
@@ -118,5 +121,6 @@ export async function getMJMLVersion() {
   const res = await fetch(`http://localhost:5000/info/mjml-version`, {
     method: "GET"
   });
+  console.log(res.body);
   return res.json();
 }

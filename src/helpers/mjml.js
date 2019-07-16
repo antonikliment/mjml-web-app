@@ -1,7 +1,8 @@
 import { mjmlRemote } from 'api-client'
 
 export default async function(mjmlContent, path) {
-  const { html, errors } = await mjmlRemote(mjmlContent, path)
+  const { html, errors } = await mjmlRemote(mjmlContent, path);
+  console.log(html);
   return { html, errors };
   /*
   (mjmlContent, filePath, mjmlPath = null, options = {})

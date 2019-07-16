@@ -109,6 +109,7 @@ class FilesList extends Component {
 
   handleClickFactory = f => () => {
     const p = pathModule.join(this.props.path, f.name)
+    console.log(p);
     if (f.isFolder) {
       return this.props.onPathChange(p)
     }
@@ -267,7 +268,7 @@ class FilesList extends Component {
 
     const rootPathItems = rootPath.split(pathModule.sep)
     const pathItems = path.split(pathModule.sep).slice(rootPathItems.length)
-
+    console.log(pathItems)
     const fullActiveFile = pathModule.join(path, (activeFile && activeFile.name) || '')
 
     return (
