@@ -25,7 +25,7 @@ app.get('/info/mjml-version', (req, res) => {
   res.send({ version: "todo" })
 });
 
-app.post('/remote', (req, res) => {
+app.post('/v2/render', (req, res) => {
   const {
     mjmlContent,
     remoteFolderPath
